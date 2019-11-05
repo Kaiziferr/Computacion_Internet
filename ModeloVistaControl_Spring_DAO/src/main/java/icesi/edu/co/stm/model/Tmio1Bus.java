@@ -22,10 +22,10 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-@Table(name="Tmio1Bus")
 @Entity
-@Data
+@Table(name="tmio1_buses")
 @NamedQuery(name="Tmio1Bus.findAll", query="SELECT t FROM Tmio1Bus t")
+@Data
 public class Tmio1Bus implements Serializable {
 	private static final long serialVersionUID = 1L;	
 	
@@ -49,9 +49,6 @@ public class Tmio1Bus implements Serializable {
 	@NotBlank(groups = {Step1.class})
 	private String tipo;
 
-	/**
-	 * 
-	
 	///bi-directional many-to-one association to Tmio1Servicio
 	@OneToMany(mappedBy="tmio1Bus")
 	private List<Tmio1Servicio> tmio1Servicios;
@@ -60,7 +57,6 @@ public class Tmio1Bus implements Serializable {
 	@OneToMany(mappedBy="tmio1Bus")
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
 
-	
 
 	public Tmio1Servicio addTmio1Servicio(Tmio1Servicio tmio1Servicio) {
 		getTmio1Servicios().add(tmio1Servicio);
@@ -90,6 +86,6 @@ public class Tmio1Bus implements Serializable {
 		return tmio1ServiciosSitio;
 
 	}
- */
+ 
 	
 }

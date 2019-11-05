@@ -11,7 +11,34 @@ import icesi.edu.co.stm.repository.IBusRepository;
 @Service
 public class BusService implements IBusService{
 
-	private IBusRepository busRepository;
+	@Override
+	public void save(Tmio1Bus bus) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Optional<Tmio1Bus> findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterable<Tmio1Bus> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Tmio1Bus bus) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * private IBusRepository busRepository;
+	 
+	 
 
 	@Autowired
 	public BusService(IBusRepository busRepository) {
@@ -42,5 +69,5 @@ public class BusService implements IBusService{
 		// TODO Auto-generated method stub
 		busRepository.delete(bus);
 	}
-
+*/
 }

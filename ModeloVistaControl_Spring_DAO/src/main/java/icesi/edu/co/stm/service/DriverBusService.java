@@ -11,8 +11,37 @@ import icesi.edu.co.stm.repository.IDriverBusRepository;
 import lombok.Data;
 @Service
 @Data
-public class DriverBusService implements IDriverBusService{
+public class DriverBusService implements IDriverBusService{@Override
+	public void save(Tmio1BusDriver busdriver) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public Optional<Tmio1BusDriver> findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterable<Tmio1BusDriver> findAll(boolean flag) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Tmio1BusDriver bus) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCed(String ced) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*
 	private IDriverBusRepository driverBusRepository;
 	
 	private String ced;
@@ -50,5 +79,5 @@ public class DriverBusService implements IDriverBusService{
 		// TODO Auto-generated method stub
 		
 	}
-
+*/
 }

@@ -37,25 +37,30 @@ public class RouteDao implements IRouteDao{
 	@Override
 	public Tmio1Route findById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(Tmio1Route.class, id);
 	}
+	
+
 
 	@Override
 	public List<Tmio1Route> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		String jpql = "Select r from Tmio1Route r";
+		return entityManager.createQuery(jpql).getResultList();
 	}
 
 	@Override
 	public List<Tmio1Route> findByDate(BigDecimal startDay, BigDecimal finalDay) {
 		// TODO Auto-generated method stub
-		return null;
+		String jpql = "Select r from Tmio1Route r where r.diaFin ="+ finalDay +" and r.diaInicio = "+startDay;
+		return entityManager.createQuery(jpql).getResultList();	
 	}
 
 	@Override
 	public List<Tmio1Route> findByHour(BigDecimal startHour, BigDecimal finalHour) {
 		// TODO Auto-generated method stub
-		return null;
+		String jpql = "Select r from Tmio1Route r where r.horaFin ="+ finalHour +" and r.horaInicio = "+startHour;
+		return entityManager.createQuery(jpql).getResultList();
 	}
 	
 	

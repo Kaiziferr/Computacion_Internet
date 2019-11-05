@@ -5,15 +5,17 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import icesi.edu.co.stm.model.Tmio1Bus;
-
 @Repository
+@Scope("singleton")
 public class BusDao implements IBusDao{
 	
-	@PersistenceContext
+	@PersistenceContext(type=PersistenceContextType.EXTENDED)
 	public EntityManager entityManager;
 
 	@Override
@@ -37,7 +39,7 @@ public class BusDao implements IBusDao{
 	@Override
 	public Tmio1Bus findById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(Tmio1Bus.class, id);
 	}
 
 	@Override
@@ -50,16 +52,16 @@ public class BusDao implements IBusDao{
 	@Override
 	public List<Tmio1Bus> findByPlaca(String placa) {
 		// TODO Auto-generated method stub
-		String jpql = "Select b from Tmio1Bus b where b.placa = placa";
-		return entityManager.createQuery(jpql).getResultList();	
+		String jpql = "Select b from Tmio1Bus b where b.placa = ?2";
+		System.out.println(entityManager.createQuery(jpql).setParameter(2, placa).getResultList());
+		return entityManager.createQuery(jpql).setParameter(2, placa).getResultList();	
 		
 	}
 
 	@Override
 	public List<Tmio1Bus> findByModelo(BigDecimal modelo) {
 		// TODO Auto-generated method stub
-		System.out.println(235);
-		String jpql = "Select b from Tmio1Bus b where b.modelo = modelo";
+		String jpql = "Select b from Tmio1Bus b where b.modelo ="+ modelo.toString();
 		return entityManager.createQuery(jpql).getResultList();	
 		
 	}
@@ -67,7 +69,8 @@ public class BusDao implements IBusDao{
 	@Override
 	public List<Tmio1Bus> findByMarca(String marca) {
 		// TODO Auto-generated method stub
-		return null;
+		String jpql = "Select b from Tmio1Bus b where b.marca = ?1";
+		return entityManager.createQuery(jpql).setParameter(1, marca).getResultList();	
 	}
 
 }
