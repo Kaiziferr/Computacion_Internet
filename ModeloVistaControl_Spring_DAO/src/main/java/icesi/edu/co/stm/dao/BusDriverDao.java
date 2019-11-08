@@ -50,18 +50,15 @@ public class BusDriverDao implements IBusDriverDao{
 	@Override
 	public List<Tmio1BusDriver> findByName(String name) {
 		// TODO Auto-generated method stub
-		String jpql = "Select d from Tmio1BusDriver d where d.nombre =:1";
-		System.out.println(entityManager.createQuery(jpql).setParameter(1, name).getResultList());
-		return entityManager.createQuery(jpql).setParameter("1", name).getResultList();	
+		String jpql = "Select d from Tmio1BusDriver d where d.nombre ='"+name+"'";
+		return entityManager.createQuery(jpql).getResultList();	
 	}
 
 	@Override
 	public List<Tmio1BusDriver> findByLastName(String lastname) {
 		// TODO Auto-generated method stub
-		String jpql = "Select d from Tmio1BusDriver d where d.apellido = :2";
-		System.out.println(entityManager.createQuery(jpql).setParameter("2", lastname).getResultList());
-
-		return entityManager.createQuery(jpql).setParameter(2, lastname).getResultList();	
+		String jpql = "Select d from Tmio1BusDriver d where d.apellido ='"+lastname+"'";
+		return entityManager.createQuery(jpql).getResultList();	
 	}
 
 }

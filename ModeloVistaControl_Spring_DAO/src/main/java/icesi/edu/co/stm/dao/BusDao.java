@@ -12,10 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import icesi.edu.co.stm.model.Tmio1Bus;
 @Repository
-@Scope("singleton")
 public class BusDao implements IBusDao{
 	
-	@PersistenceContext(type=PersistenceContextType.EXTENDED)
+	@PersistenceContext
 	public EntityManager entityManager;
 
 	@Override
@@ -52,9 +51,8 @@ public class BusDao implements IBusDao{
 	@Override
 	public List<Tmio1Bus> findByPlaca(String placa) {
 		// TODO Auto-generated method stub
-		String jpql = "Select b from Tmio1Bus b where b.placa = ?2";
-		System.out.println(entityManager.createQuery(jpql).setParameter(2, placa).getResultList());
-		return entityManager.createQuery(jpql).setParameter(2, placa).getResultList();	
+		String jpql = "Select b from Tmio1Bus b where b.placa = '"+placa+"'";
+		return entityManager.createQuery(jpql).getResultList();	
 		
 	}
 
@@ -69,8 +67,8 @@ public class BusDao implements IBusDao{
 	@Override
 	public List<Tmio1Bus> findByMarca(String marca) {
 		// TODO Auto-generated method stub
-		String jpql = "Select b from Tmio1Bus b where b.marca = ?1";
-		return entityManager.createQuery(jpql).setParameter(1, marca).getResultList();	
+		String jpql = "Select b from Tmio1Bus b where b.marca = '"+marca+"'";
+		return entityManager.createQuery(jpql).getResultList();	
 	}
 
 }

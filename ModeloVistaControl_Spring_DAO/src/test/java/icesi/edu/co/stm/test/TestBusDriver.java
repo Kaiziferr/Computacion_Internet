@@ -40,33 +40,29 @@ public class TestBusDriver {
 		
 		
 		Tmio1BusDriver busDriver2 = new Tmio1BusDriver();
-		busDriver2.setNombre("Alvaro");
-		busDriver2.setApellido("Gomes");
+		busDriver2.setNombre("Camilo");
+		busDriver2.setApellido("Galviz");
 		busDriver2.setFechaNacimiento(LocalDate.of(1999, 5, 21));
 		busDriver2.setFechaContratacion(LocalDate.of(2015, 3, 20));
-		busDriver.setCedula("23456677");
+		busDriver2.setCedula("23456677");
 		IbusDriverDao.save(busDriver2);
 
 		
-		
 		Tmio1BusDriver busDriver3 = new Tmio1BusDriver();
-		busDriver2.setNombre("Daniel");
-		busDriver2.setApellido("Gomes");
-		busDriver2.setFechaNacimiento(LocalDate.of(1995, 8, 30));
-		busDriver2.setFechaContratacion(LocalDate.of(2017, 7, 20));
-		busDriver.setCedula("456789445");
+		busDriver3.setNombre("Juliana");
+		busDriver3.setApellido("Ramires");
+		busDriver3.setFechaNacimiento(LocalDate.of(1999, 5, 21));
+		busDriver3.setFechaContratacion(LocalDate.of(2015, 3, 20));
+		busDriver3.setCedula("23409777");
 		IbusDriverDao.save(busDriver3);
-
-		
 		
 		Tmio1BusDriver busDriver4 = new Tmio1BusDriver();
-		busDriver2.setNombre("Camilo");
-		busDriver2.setApellido("Gavis");
-		busDriver2.setFechaNacimiento(LocalDate.of(1990, 9, 21));
-		busDriver2.setFechaContratacion(LocalDate.of(2014, 7, 20));
-		busDriver.setCedula("34567899");
+		busDriver4.setNombre("Daniel");
+		busDriver4.setApellido("Gomes");
+		busDriver4.setFechaNacimiento(LocalDate.of(1999, 5, 21));
+		busDriver4.setFechaContratacion(LocalDate.of(2015, 3, 20));
+		busDriver4.setCedula("123456547");
 		IbusDriverDao.save(busDriver4);
-
 	
 	}
 	
@@ -85,16 +81,17 @@ public class TestBusDriver {
 					isT ++;
 				}
 			}
+			assertTrue(isT==busDriver.size());
 		}
-		assertTrue(isT==busDriver.size());
 		
 	}
 	
 	@Test
 	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void testFindByLastName() {		assertNotNull(IbusDriverDao);
+	public void testFindByLastName() {		
+		assertNotNull(IbusDriverDao);
 		String lastName = "Galvis";
-		List<Tmio1BusDriver> busDriver = IbusDriverDao.findByName(lastName);
+		List<Tmio1BusDriver> busDriver = IbusDriverDao.findByLastName(lastName);
 		assertTrue(!busDriver.isEmpty());
 		int isT = 0;
 		if(!busDriver.isEmpty()) {
@@ -103,7 +100,8 @@ public class TestBusDriver {
 					isT ++;
 				}
 			}
+			assertTrue(isT==busDriver.size());
+
 		}
-		assertTrue(isT==busDriver.size());
 	}
 }
