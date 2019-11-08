@@ -66,13 +66,7 @@ public class TestBusDao {
 
 	}
 	
-	
-	@Test
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void findAll() {
-		assertTrue(IbusDao.findAll().size()==4);
-	}
-	
+
 	
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -108,7 +102,27 @@ public class TestBusDao {
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update() {
+		Tmio1Bus bus = new Tmio1Bus();
+		bus.setCapacidad(new BigDecimal(160));
+		bus.setMarca("Mazda");
+		bus.setModelo(new BigDecimal(2));
+		bus.setPlaca("beta-999");
+		bus.setTipo("T");
+		IbusDao.save(bus);
 		
+		Tmio1Bus busUpd = IbusDao.findById(bus.getId());
+		 busUpd.setCapacidad(new BigDecimal(80));
+		 busUpd.setMarca("Kiu");
+		 busUpd.setModelo(new BigDecimal(1));
+		 busUpd.setPlaca("beta-999");
+		 busUpd.setTipo("P");
+		 IbusDao.update( busUpd);
+		 
+		Tmio1Bus busUpd2 = IbusDao.findById(bus.getId());
+
+		assertTrue(busUpd2.getCapacidad().equals(busUpd.getCapacidad()) && busUpd2.getMarca().equals(busUpd.getMarca())
+				&& busUpd2.getModelo().equals(busUpd.getModelo()) && busUpd2.getPlaca().equals(busUpd.getPlaca())
+				&& busUpd2.getTipo().equals(busUpd.getTipo()));
 	}
 	
 	
