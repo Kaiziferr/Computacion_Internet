@@ -8,13 +8,23 @@ import org.springframework.stereotype.Service;
 import icesi.edu.co.stm.model.Tmio1Bus;
 import icesi.edu.co.stm.repository.IBusRepository;
 
+
 @Service
 public class BusService implements IBusService{
+	
+
+	private IBusRepository IbusRepository;
+	
+	@Autowired
+	public BusService(IBusRepository IbusRepository) {
+		this.IbusRepository = IbusRepository;
+	} 
+	
 
 	@Override
 	public void save(Tmio1Bus bus) {
 		// TODO Auto-generated method stub
-		
+		IbusRepository.save(bus);
 	}
 
 	@Override

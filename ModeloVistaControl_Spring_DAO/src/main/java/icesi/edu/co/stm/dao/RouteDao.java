@@ -50,7 +50,7 @@ public class RouteDao implements IRouteDao{
 	}
 
 	@Override
-	public List<Tmio1Route> findByDate(BigDecimal startDay, BigDecimal finalDay) {
+	public List<Tmio1Route> findByDay(BigDecimal startDay, BigDecimal finalDay) {
 		// TODO Auto-generated method stub
 		String jpql = "Select r from Tmio1Route r where r.diaFin ="+ finalDay +" and r.diaInicio = "+startDay;
 		return entityManager.createQuery(jpql).getResultList();	

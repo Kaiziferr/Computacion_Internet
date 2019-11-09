@@ -22,7 +22,7 @@ import icesi.edu.co.stm.dao.IBusDao;
 import icesi.edu.co.stm.model.Tmio1Bus;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@Rollback(false)
+@Rollback
 @SpringBootTest(classes = StmApplication.class)
 public class TestBusDao {
 
@@ -66,11 +66,23 @@ public class TestBusDao {
 
 	}
 	
-
+	
 	
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void save() {
+	public void testConection() {
+		assertNotNull(IbusDao);
+	}
+	
+	@Test
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void testFindAll() {
+		assertTrue(IbusDao.findAll().size()==4);
+	}
+	
+	@Test
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void testSave() {
 		Tmio1Bus bus3 = new Tmio1Bus();
 		bus3.setCapacidad(new BigDecimal(75));
 		bus3.setMarca("Blanco y Negro");
@@ -84,7 +96,7 @@ public class TestBusDao {
 	
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void delete() {
+	public void testDelete() {
 		Tmio1Bus bus3 = new Tmio1Bus();
 		bus3.setCapacidad(new BigDecimal(75));
 		bus3.setMarca("Blanco y Negro");
@@ -101,7 +113,7 @@ public class TestBusDao {
 	
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void update() {
+	public void testUpdate() {
 		Tmio1Bus bus = new Tmio1Bus();
 		bus.setCapacidad(new BigDecimal(160));
 		bus.setMarca("Mazda");
@@ -130,7 +142,6 @@ public class TestBusDao {
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void tetsFindByModelo() {
-		assertNotNull(IbusDao);
 		BigDecimal modelo = new BigDecimal(2);
 		List<Tmio1Bus> buses = IbusDao.findByModelo(modelo);
 		int isT = 0;
@@ -147,7 +158,6 @@ public class TestBusDao {
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void tetsFindByModeloFail() {
-		assertNotNull(IbusDao);
 		BigDecimal modelo = new BigDecimal(1000);
 		List<Tmio1Bus> buses = IbusDao.findByModelo(modelo);
 		int isT = 0;
@@ -164,7 +174,6 @@ public class TestBusDao {
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindByMarca() {
-		assertNotNull(IbusDao);
 		String marca = "Mazda";
 		List<Tmio1Bus> buses = IbusDao.findByMarca(marca);
 		int isT = 0;
@@ -181,7 +190,6 @@ public class TestBusDao {
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindByMarcaFail() {
-		assertNotNull(IbusDao);
 		String marca = "Falla";
 		List<Tmio1Bus> buses = IbusDao.findByMarca(marca);
 
@@ -199,7 +207,6 @@ public class TestBusDao {
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindByPlaca() {
-
 		Tmio1Bus bus3 = new Tmio1Bus();
 		bus3.setCapacidad(new BigDecimal(75));
 		bus3.setMarca("Blanco");
@@ -208,7 +215,6 @@ public class TestBusDao {
 		bus3.setTipo("P");
 		IbusDao.save(bus3);
 
-		assertNotNull(IbusDao);
 		List<Tmio1Bus> buses = IbusDao.findByPlaca(bus3.getPlaca());
 		assertTrue(!buses.isEmpty());
 		assertTrue(buses.get(0).equals(bus3));
@@ -217,7 +223,6 @@ public class TestBusDao {
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindByPlacaFail() {
-		assertNotNull(IbusDao);
 		List<Tmio1Bus> buses = IbusDao.findByPlaca("Fail");
 		assertFalse(!buses.isEmpty());
 

@@ -1,6 +1,7 @@
 package icesi.edu.co.stm.test;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -22,15 +23,14 @@ import icesi.edu.co.stm.model.Tmio1BusDriver;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = StmApplication.class)
-@Rollback(false)
-public class TestBusDriver {
+@Rollback
+public class TestBusDriverDao {
 
 	@Autowired
 	private IBusDriverDao IbusDriverDao;
 	
+	@Before
 	public void setup() {
-		
-		
 		
 		Tmio1BusDriver busDriver2 = new Tmio1BusDriver();
 		busDriver2.setNombre("Camilo");
@@ -64,43 +64,84 @@ public class TestBusDriver {
 		busDriver4.setFechaContratacion(LocalDate.of(2015, 3, 20));
 		busDriver4.setCedula("123456547");
 		IbusDriverDao.save(busDriver4);
+		
 	
+		
 	}
 	
 	
 	@Test
+	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void testConection() {
+		assertNotNull(IbusDriverDao);
+	}
+	
+	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void save() {
+	public void testFindAll() {
+		assertTrue(IbusDriverDao.findAll().size()==4);
+	}
+	
+	@Test
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void testSave() {
 		Tmio1BusDriver busDriver = new Tmio1BusDriver();
-		busDriver.setNombre("Daniel");
-		busDriver.setApellido("Gomes");
-		busDriver.setFechaNacimiento(LocalDate.of(1999, 5, 21));
-		busDriver.setFechaContratacion(LocalDate.of(2015, 3, 20));
-		busDriver.setCedula("123456547");
+		busDriver.setNombre("Fulano");
+		busDriver.setApellido("Talcual");
+		busDriver.setFechaContratacion(LocalDate.of(2019, 5, 24));
+		busDriver.setFechaNacimiento(LocalDate.of(1990, 8, 30));
+		busDriver.setCedula("457896213");
+		IbusDriverDao.save(busDriver);
+		Tmio1BusDriver alfa = IbusDriverDao.findById(busDriver.getCedula());
+		assertTrue(alfa.equals(busDriver));
+	}
+	
+	@Test
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void testDelete() {
+		Tmio1BusDriver busDriver = new Tmio1BusDriver();
+		busDriver.setNombre("Carmen");
+		busDriver.setApellido("Diaz");
+		busDriver.setFechaContratacion(LocalDate.of(2019, 5, 24));
+		busDriver.setFechaNacimiento(LocalDate.of(1990, 8, 30));
+		busDriver.setCedula("1479638520");
+		IbusDriverDao.save(busDriver);
+		IbusDriverDao.delete(busDriver);
+		Tmio1BusDriver beta = IbusDriverDao.findById(busDriver.getCedula());
+		assertNull(beta);
+	}
+	
+	@Test
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void testUpdate() {
+		Tmio1BusDriver busDriver = new Tmio1BusDriver();
+		busDriver.setNombre("Tunomre");
+		busDriver.setApellido("TuApellido");
+		busDriver.setFechaContratacion(LocalDate.of(2015, 5, 24));
+		busDriver.setFechaNacimiento(LocalDate.of(1980, 8, 30));
+		busDriver.setCedula("1559963274");
 		IbusDriverDao.save(busDriver);
 		
-	}
-	
-	
-
-	@Test
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void delete() {
+		Tmio1BusDriver update1 = IbusDriverDao.findById(busDriver.getCedula());
+		update1.setNombre("CambioName");
+		update1.setApellido("CambioApellido");
+		update1.setFechaContratacion(LocalDate.of(2013, 9, 12));
+		update1.setFechaNacimiento(LocalDate.of(1991, 12, 24));
+		IbusDriverDao.update(update1);
+		
+		Tmio1BusDriver update2 = IbusDriverDao.findById(busDriver.getCedula());
+		
+		assertTrue(update1.equals(update2));
 		
 	}
 	
-	@Test
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void update() {}
 	
 	@Test
 	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindByName() {
 	
-		assertNotNull(IbusDriverDao);
 		String name = "Daniel";
 		List<Tmio1BusDriver> busDriver = IbusDriverDao.findByName(name);
-		assertTrue(!busDriver.isEmpty());
 		int isT = 0;
 		if(!busDriver.isEmpty()) {
 			for(int i=0;i<busDriver.size();i++) {
@@ -108,21 +149,32 @@ public class TestBusDriver {
 					isT ++;
 				}
 			}
-			assertTrue(isT==busDriver.size());
 		}
-		
+		assertTrue(isT==busDriver.size() && busDriver.size()>0);
+
 	}
 	@Test
 	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void testFindByNameFail() {}
+	public void testFindByNameFail() {
+		String name = "Anita";
+		List<Tmio1BusDriver> busDriver = IbusDriverDao.findByName(name);
+		int isT = 0;
+		if(!busDriver.isEmpty()) {
+			for(int i=0;i<busDriver.size();i++) {
+				if(busDriver.get(i).getNombre().equals(name)) {
+					isT ++;
+				}
+			}
+		}
+		assertTrue(isT==0);
+
+	}
 	
 	@Test
 	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindByLastName() {		
-		assertNotNull(IbusDriverDao);
 		String lastName = "Galvis";
 		List<Tmio1BusDriver> busDriver = IbusDriverDao.findByLastName(lastName);
-		assertTrue(!busDriver.isEmpty());
 		int isT = 0;
 		if(!busDriver.isEmpty()) {
 			for(int i=0;i<busDriver.size();i++) {
@@ -130,13 +182,22 @@ public class TestBusDriver {
 					isT ++;
 				}
 			}
-			assertTrue(isT==busDriver.size());
-
 		}
+		assertTrue(isT==busDriver.size() && busDriver.size()>0);
 	}
 	@Test
 	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindByLastNameFail() {
-		
+		String lastName = "Takuello";
+		List<Tmio1BusDriver> busDriver = IbusDriverDao.findByLastName(lastName);
+		int isT = 0;
+		if(!busDriver.isEmpty()) {
+			for(int i=0;i<busDriver.size();i++) {
+				if(busDriver.get(i).getApellido().equals(lastName)) {
+					isT ++;
+				}
+			}
+		}
+		assertTrue(isT==0);
 	}
 }
