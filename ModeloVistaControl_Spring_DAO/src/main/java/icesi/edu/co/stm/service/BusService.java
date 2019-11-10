@@ -1,83 +1,65 @@
 package icesi.edu.co.stm.service;
 
-import java.util.Optional;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+
+import icesi.edu.co.stm.dao.IBusDao;
 import icesi.edu.co.stm.model.Tmio1Bus;
-import icesi.edu.co.stm.repository.IBusRepository;
 
 
 @Service
 public class BusService implements IBusService{
 	
 
-	private IBusRepository IbusRepository;
+	private IBusDao iBusDao;
 	
 	@Autowired
-	public BusService(IBusRepository IbusRepository) {
-		this.IbusRepository = IbusRepository;
-	} 
-	
-
-	@Override
-	public void save(Tmio1Bus bus) {
-		// TODO Auto-generated method stub
-		IbusRepository.save(bus);
-	}
-
-	@Override
-	public Optional<Tmio1Bus> findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<Tmio1Bus> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Tmio1Bus bus) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * private IBusRepository busRepository;
-	 
-	 
-
-	@Autowired
-	public BusService(IBusRepository busRepository) {
-		this.busRepository = busRepository;
+	public BusService(IBusDao iBusDao) {
+		this.iBusDao = iBusDao;
 	}
 	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public void save(Tmio1Bus entity) {
+		// TODO Auto-generated method stub
+		iBusDao.save(entity);
+	}
 	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void save(Tmio1Bus bus) {
+	public void delete(Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		busRepository.save(bus);
+		iBusDao.delete(entity);
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public Optional<Tmio1Bus> findById(Integer id) {
+	public void update(Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		return busRepository.findById(id);
+		iBusDao.update(entity);
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public Iterable<Tmio1Bus> findAll() {
+	public Tmio1Bus findById(Integer id) {
 		// TODO Auto-generated method stub
-		return busRepository.findAll();
+		return iBusDao.findById(id);
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void delete(Tmio1Bus bus) {
+	public List<Tmio1Bus> findAll() {
 		// TODO Auto-generated method stub
-		busRepository.delete(bus);
+		return iBusDao.findAll();
 	}
-*/
+
+	
+	
+	
 }

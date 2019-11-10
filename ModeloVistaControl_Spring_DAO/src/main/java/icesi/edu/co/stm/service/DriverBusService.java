@@ -1,83 +1,61 @@
 package icesi.edu.co.stm.service;
 
-import java.awt.List;
-import java.util.ArrayList;
-import java.util.Optional;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import icesi.edu.co.stm.dao.IBusDriverDao;
 import icesi.edu.co.stm.model.Tmio1BusDriver;
-import icesi.edu.co.stm.repository.IDriverBusRepository;
-import lombok.Data;
+
 @Service
-@Data
-public class DriverBusService implements IDriverBusService{@Override
-	public void save(Tmio1BusDriver busdriver) {
-		// TODO Auto-generated method stub
-		
-	}
+public class DriverBusService implements IDriverBusService{
 
-	@Override
-	public Optional<Tmio1BusDriver> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<Tmio1BusDriver> findAll(boolean flag) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Tmio1BusDriver bus) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setCed(String ced) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
-	private IDriverBusRepository driverBusRepository;
-	
-	private String ced;
-	
-	public DriverBusService(IDriverBusRepository driverBusRepository) {
+	private IBusDriverDao iBusDriverDao;
+	@Autowired
+	public DriverBusService(IBusDriverDao iBusDriverDao) {
 		// TODO Auto-generated constructor stub
-		this.driverBusRepository = driverBusRepository;
+		this.iBusDriverDao = iBusDriverDao;
 	}
 	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void save(Tmio1BusDriver busdriver) {
+	public void save(Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
-		driverBusRepository.save(busdriver);
+		iBusDriverDao.save(entity);
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public Optional<Tmio1BusDriver> findById(String id) {
+	public void delete(Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
-		return driverBusRepository.findById(id);
+		iBusDriverDao.delete(entity);
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public Iterable<Tmio1BusDriver> findAll(boolean flag) {
+	public void update(Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
-		if(flag) { 
-			ArrayList<Tmio1BusDriver> a = new ArrayList<>();
-			a.add(findById(ced).get());
-			return a;
-		}
-		return driverBusRepository.findAll();
+		iBusDriverDao.update(entity);
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void delete(Tmio1BusDriver bus) {
+	public Tmio1BusDriver findById(String id) {
 		// TODO Auto-generated method stub
-		
+		return iBusDriverDao.findById(id);
 	}
-*/
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public List<Tmio1BusDriver> findAll() {
+		// TODO Auto-generated method stub
+		return iBusDriverDao.findAll();
+	}
+
+
+	
 }

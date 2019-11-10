@@ -62,8 +62,6 @@ public class Tmio1BusDriver implements Serializable {
 	@NonNull
 	private String nombre;
 
-	/**
-	
 	//bi-directional many-to-one association to Tmio1Servicio
 	@OneToMany(mappedBy="tmio1Conductore")
 	private List<Tmio1Servicio> tmio1Servicios;
@@ -99,5 +97,4 @@ public class Tmio1BusDriver implements Serializable {
 		return tmio1ServiciosSitio;
 	}
 	
-*/
 }

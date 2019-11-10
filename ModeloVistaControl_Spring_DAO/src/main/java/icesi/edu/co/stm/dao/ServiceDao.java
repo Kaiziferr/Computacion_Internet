@@ -1,5 +1,6 @@
 package icesi.edu.co.stm.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,6 +43,27 @@ public class ServiceDao implements IServiceDao {
 
 	@Override
 	public List<Tmio1Servicio> findAll() {
+		// TODO Auto-generated method stub
+		String jpql = "Select s from Tmio1Servicio s";
+		return entityManager.createQuery(jpql).getResultList();
+	}
+
+	@Override
+	public List<Tmio1Servicio> findByDateDriversItinerary(LocalDate dateService) {
+		// TODO Auto-generated method stub
+		String jpql = "Select s from Tmio1Servicio s";
+		return entityManager.createQuery(jpql).getResultList();
+	}
+
+	@Override
+	public List<Tmio1Servicio> findByRoutesLessDate(LocalDate dateService) {
+		// TODO Auto-generated method stub
+		String jpql = "Select s from Tmio1Servicio s";
+		return entityManager.createQuery(jpql).getResultList();
+	}
+
+	@Override
+	public List<Tmio1Servicio> findBylistBusesMoreServiceSameDay(LocalDate dateService) {
 		// TODO Auto-generated method stub
 		String jpql = "Select s from Tmio1Servicio s";
 		return entityManager.createQuery(jpql).getResultList();

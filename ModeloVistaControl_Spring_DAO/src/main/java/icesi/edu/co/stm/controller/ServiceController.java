@@ -56,7 +56,7 @@ public class ServiceController {
 		model.addAttribute("tmio1ServicioPK", new Tmio1ServicioPK());
 		model.addAttribute("buses", busService.findAll());
 		model.addAttribute("routes", routeService.findAll());
-		model.addAttribute("busDrivers", busDriverService.findAll(false));
+		model.addAttribute("busDrivers", busDriverService.findAll());
 		return "services/add-service";
 	}
 	
@@ -72,9 +72,9 @@ public class ServiceController {
 			
 			Tmio1Servicio servicio = new Tmio1Servicio();
 			servicio.setId(service);
-			servicio.setTmio1Bus(busService.findById(service.getIdBus()).get());
-			servicio.setTmio1Ruta(routeService.findById(service.getIdRuta()).get());
-			servicio.setTmio1Conductore(busDriverService.findById(service.getCedulaConductor()).get());
+			//servicio.setTmio1Bus(busService.findById(service.getIdBus()).get());
+			//servicio.setTmio1Ruta(routeService.findById(service.getIdRuta()).get());
+			//servicio.setTmio1Conductore(busDriverService.findById(service.getCedulaConductor()).get());
 			
 			System.out.println(servicio);
 			serviceService.save(servicio);

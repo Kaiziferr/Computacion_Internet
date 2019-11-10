@@ -33,7 +33,7 @@ public class BusDriverController {
 	@GetMapping("/busdrivers")
 	public String indexBusDrivers(Model model) {
 		
-		model.addAttribute("busdrivers", driverBusService.findAll(flag));
+		model.addAttribute("busdrivers", driverBusService.findAll());
 		flag = false;
 		return "busdrivers/index";
 	}
@@ -51,13 +51,13 @@ public class BusDriverController {
 	public String showBusDrivers(@Validated(Step1.class) Tmio1BusDriver busDriver, BindingResult bindingResult,
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		System.out.println(busDriver.getCedula());
-		Optional<Tmio1BusDriver> busDri = driverBusService.findById(busDriver.getCedula());
+		//Optional<Tmio1BusDriver> busDri = driverBusService.findById(busDriver.getCedula());
 		if(!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				return "busdrivers/show-busdriver";
 			}
 
-			driverBusService.setCed(busDriver.getCedula());
+		//	driverBusService.setCed(busDriver.getCedula());
 			flag = true;
 		}
 		return "/busdrivers";

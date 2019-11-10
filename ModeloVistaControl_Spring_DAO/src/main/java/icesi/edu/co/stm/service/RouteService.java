@@ -1,70 +1,56 @@
 package icesi.edu.co.stm.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import icesi.edu.co.stm.dao.IRouteDao;
 import icesi.edu.co.stm.model.Tmio1Route;
-import icesi.edu.co.stm.repository.IRouteRepository;
 @Service
 public class RouteService implements IRouteService{
-
-	@Override
-	public void save(Tmio1Route route) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Optional<Tmio1Route> findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<Tmio1Route> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Tmio1Route route) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
-	private IRouteRepository routeRepository;
 	
+	private IRouteDao iRouteDao; 
 	@Autowired
-	public RouteService(IRouteRepository routeRepository) {
+	public RouteService(IRouteDao iRouteDao) {
 		// TODO Auto-generated constructor stub
-		this.routeRepository = routeRepository;
+		this.iRouteDao = iRouteDao;
+	}
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public void save(Tmio1Route entity) {
+		// TODO Auto-generated method stub
+		iRouteDao.save(entity);
 	}
 	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void save(Tmio1Route route) {
+	public void delete(Tmio1Route entity) {
 		// TODO Auto-generated method stub
-		routeRepository.save(route);
+		iRouteDao.delete(entity);
+	}
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public void update(Tmio1Route entity) {
+		// TODO Auto-generated method stub
+		iRouteDao.update(entity);
+	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public Tmio1Route findById(Integer id) {
+		// TODO Auto-generated method stub
+		return iRouteDao.findById(id);
+	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public List<Tmio1Route> findAll() {
+		// TODO Auto-generated method stub
+		return iRouteDao.findAll();
 	}
 
-	@Override
-	public Optional<Tmio1Route> findById(Integer id) {
-		// TODO Auto-generated method stub
-		return routeRepository.findById(id);
-	}
-
-	@Override
-	public Iterable<Tmio1Route> findAll() {
-		// TODO Auto-generated method stub
-		return routeRepository.findAll();
-	}
-
-	@Override
-	public void delete(Tmio1Route route) {
-		// TODO Auto-generated method stub
-		
-	}
-*/
+	
 }

@@ -1,78 +1,60 @@
 package icesi.edu.co.stm.service;
 
-import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import icesi.edu.co.stm.model.Tmio1Bus;
-import icesi.edu.co.stm.model.Tmio1BusDriver;
-import icesi.edu.co.stm.model.Tmio1Route;
+import icesi.edu.co.stm.dao.IServiceDao;
 import icesi.edu.co.stm.model.Tmio1Servicio;
 import icesi.edu.co.stm.model.Tmio1ServicioPK;
-import icesi.edu.co.stm.repository.IServiceRepository;
 
 @Service
 public class SesviceService implements IServiceService{
-
-	@Override
-	public void save(Tmio1Servicio service) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Optional<Tmio1Servicio> findById(Tmio1ServicioPK id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<Tmio1Servicio> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Tmio1Servicio service) {
-		// TODO Auto-generated method stub
-		
-	}
-	/*
-	private IServiceRepository serviceRepository;
 	
+	private IServiceDao iServiceDao;  
 	@Autowired
-	public SesviceService(IServiceRepository serviceRepository) {
+	public SesviceService(IServiceDao iServiceDao) {
 		// TODO Auto-generated constructor stub
-		this.serviceRepository = serviceRepository;
+		this.iServiceDao = iServiceDao;
 	}
-
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void save(Tmio1Servicio service) {
+	public void save(Tmio1Servicio entity) {
 		// TODO Auto-generated method stub
-		serviceRepository.save(service);
-		
+		iServiceDao.save(entity);
+	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public void delete(Tmio1Servicio entity) {
+		// TODO Auto-generated method stub
+		iServiceDao.delete(entity);
+	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public void update(Tmio1Servicio entity) {
+		// TODO Auto-generated method stub
+		iServiceDao.update(entity);
+	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public Tmio1Servicio findById(Tmio1ServicioPK id) {
+		// TODO Auto-generated method stub
+		return iServiceDao.findById(id);
+	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Override
+	public List<Tmio1Servicio> findAll() {
+		// TODO Auto-generated method stub
+		return iServiceDao.findAll();
 	}
 	
 	
-	@Override
-	public Optional<Tmio1Servicio> findById(Tmio1ServicioPK id) {
-		// TODO Auto-generated method stub
-		return serviceRepository.findById(id);
-	}
-
-	@Override
-	public Iterable<Tmio1Servicio> findAll() {
-		// TODO Auto-generated method stub
-		return serviceRepository.findAll();
-	}
-
-	@Override
-	public void delete(Tmio1Servicio service) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	*/
 }

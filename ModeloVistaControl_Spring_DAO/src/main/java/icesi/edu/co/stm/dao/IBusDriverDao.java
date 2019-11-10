@@ -9,4 +9,5 @@ public interface IBusDriverDao extends IDao<Tmio1BusDriver, String>{
 	public List<Tmio1BusDriver> findByName(String name);
 	
 	public List<Tmio1BusDriver> findByLastName(String lastname);
+	
 }
