@@ -1,5 +1,6 @@
 package icesi.edu.co.stm.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContextType;
 import org.springframework.stereotype.Repository;
 
 import icesi.edu.co.stm.model.Tmio1BusDriver;
+import icesi.edu.co.stm.model.Tmio1Servicio;
 @Repository
 public class BusDriverDao implements IBusDriverDao{
 
@@ -58,6 +60,14 @@ public class BusDriverDao implements IBusDriverDao{
 	public List<Tmio1BusDriver> findByLastName(String lastname) {
 		// TODO Auto-generated method stub
 		String jpql = "Select d from Tmio1BusDriver d where d.apellido ='"+lastname+"'";
+		return entityManager.createQuery(jpql).getResultList();	
+	}
+
+	@Override
+	public List<Tmio1BusDriver> findByDateDriversItinerary(LocalDate dateService) {
+		// TODO Auto-generated method stub
+		String jpql = "Select b, count(s) from Tmio1BusDriver b join Tmio1Servicio s on b.cedula = s.id.cedulaConductor where'"+dateService+"' between s.id.fechaInicio and s.id.fechaFin group by b order by s.id.fechaInicio , s.id.fechaFin";
+		System.out.println(jpql);
 		return entityManager.createQuery(jpql).getResultList();	
 	}
 

@@ -311,20 +311,10 @@ public class TestServiceDao {
 		assertTrue(update.equals(service));
 		
 	}
+
+	
+
 	/*
-	
-	@Test
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void testFindByDateDriversItinerary(){
-		
-	}
-	
-	@Test
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void testFindByRoutesLessDate(){
-		
-	}
-	
 	@Test
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testFindBylistBusesMoreServiceSameDay(){

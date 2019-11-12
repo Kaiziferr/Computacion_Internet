@@ -1,6 +1,7 @@
 package icesi.edu.co.stm.dao;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -68,6 +69,14 @@ public class BusDao implements IBusDao{
 	public List<Tmio1Bus> findByMarca(String marca) {
 		// TODO Auto-generated method stub
 		String jpql = "Select b from Tmio1Bus b where b.marca = '"+marca+"'";
+		return entityManager.createQuery(jpql).getResultList();	
+	}
+
+	@Override
+	public List<Tmio1Bus> findBylistBusesMoreServiceSameDay(BigDecimal dateService) {
+		// TODO Auto-generated method stub
+		
+		String jpql = "Select b from Tmio1Bus b JOIN Tmio1Servicio s on b.id = s.id.idBus where '"+dateService+"' between s.id.fechaInicio and s.id.fechaFin group by b HAVING count(s)>1";
 		return entityManager.createQuery(jpql).getResultList();	
 	}
 
