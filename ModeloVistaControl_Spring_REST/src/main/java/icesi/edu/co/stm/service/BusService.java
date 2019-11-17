@@ -1,6 +1,4 @@
 package icesi.edu.co.stm.service;
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import icesi.edu.co.stm.model.Tmio1Bus;
 @Service
 public class BusService implements IBusService{
 	
-
 	private IBusDao iBusDao;
 	
 	@Autowired
