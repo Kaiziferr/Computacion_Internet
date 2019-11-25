@@ -19,7 +19,7 @@ import icesi.edu.co.stm.model.Tmio1Bus;
 @Component
 public class BusDelegate implements IBusDelegate{
 
-	private final static String URI = "http://localhost:8080/";
+	private final static String URI = "http://localhost:8080";
 	
 	private RestTemplate restTemplate;
 	
@@ -29,39 +29,53 @@ public class BusDelegate implements IBusDelegate{
 
 	
 	@Override
-	public void save(Tmio1Bus entity) {
+	public Tmio1Bus save(Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		TransactionBody<Tmio1Bus> transaction = new TransactionBody<>("apiContext",entity);
+		TransactionBody<Tmio1Bus> transaction = new TransactionBody<>("newCar", entity);
 		HttpEntity<TransactionBody<Tmio1Bus>> request = new HttpEntity<>(transaction);
 		ResponseEntity<TransactionBody<Tmio1Bus>> response = null;
-		
-		try {
-			response = restTemplate.exchange(URI+"/buses/create", HttpMethod.POST, request, new ParameterizedTypeReference<TransactionBody<Tmio1Bus>>() {
-			
-			});
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		response.getBody();
+
+		response = restTemplate.exchange(URI + "/buses/create", HttpMethod.POST, request,
+				new ParameterizedTypeReference<TransactionBody<Tmio1Bus>>() {
+				});
+		System.out.println(entity);
+
+		return entity;
 		
 	}
 
 	@Override
-	public void delete(Tmio1Bus entity) {
+	public Tmio1Bus delete(Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void update(Tmio1Bus entity) {
+	public Tmio1Bus update(Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
 	public Tmio1Bus findById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		TransactionBody<Integer> transaction = new TransactionBody<>("busid",  id);
+		HttpEntity<TransactionBody<Integer>> request = new HttpEntity<>(transaction);
+		ResponseEntity<TransactionBody<Tmio1Bus>> response = null;
+
+		response = restTemplate.exchange(URI + "/buses/bus/"+id, HttpMethod.GET, request,
+				new ParameterizedTypeReference<TransactionBody<Tmio1Bus>>() {
+				});
+		try {
+
+			Tmio1Bus bust = response.getBody().getBody();
+			return bust;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

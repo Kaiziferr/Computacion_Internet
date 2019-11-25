@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface IDelegate<T, K>{
 	
-	public void save(T entity);
+	public T save(T entity);
 	
-	public void delete(T entity);
+	public T delete(T entity);
 	
-	public void update(T entity);
+	public T update(T entity);
 	
 	public T findById(K id);
 	

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import icesi.edu.co.stm.model.Tmio1Bus;
@@ -21,9 +23,9 @@ public class BusControllerRest implements IBusControllerRest{
 	
 	@PostMapping("/buses/create")
 	@Override
-	public void save(Tmio1Bus entity) {
+	public void save(@RequestBody Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		System.out.println("Congratulation");
+		System.out.println("Congratulation" +entity);
 		busService.save(entity);
 	}
 
@@ -39,13 +41,12 @@ public class BusControllerRest implements IBusControllerRest{
 	@Override
 	public void update(Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		System.out.println("Congratulation"+entity);
 		busService.update(entity);
 	}
 	
 	@GetMapping("/buses/bus/{id}")
 	@Override
-	public Tmio1Bus findById(Integer id) {
+	public Tmio1Bus findById(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		return busService.findById(id);
 	}
@@ -54,7 +55,6 @@ public class BusControllerRest implements IBusControllerRest{
 	@Override
 	public List<Tmio1Bus> findAll() {
 		// TODO Auto-generated method stub
-		System.out.println("Congratulation");
 		return busService.findAll();
 	}
 	
