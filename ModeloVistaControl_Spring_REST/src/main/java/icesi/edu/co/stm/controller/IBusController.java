@@ -1,4 +1,4 @@
-package Icesi.edu.co.stm.controller;
+package icesi.edu.co.stm.controller;
 
 import icesi.edu.co.stm.model.Tmio1Bus;
 

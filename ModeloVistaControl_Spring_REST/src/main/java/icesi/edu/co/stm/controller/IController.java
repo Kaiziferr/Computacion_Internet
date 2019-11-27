@@ -1,12 +1,15 @@
-package Icesi.edu.co.stm.controller;
-
+package icesi.edu.co.stm.controller;
 
 public interface IController <T,K>{
 	
 	public Iterable<T> getALL();
 	
-	public T get(K i);
+	public T get(K id);
 	
-	public T add(T entity);
+	public void add(T entity);
+	
+	public void update(T entity);
+	
+	public void delete(T entity);
 	
 }
