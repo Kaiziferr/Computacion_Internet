@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import icesi.edu.co.stm.model.Tmio1BusDriver;
@@ -18,35 +20,35 @@ public class DriverBusControllerRest implements IDriverBusControllerRest{
 	@Autowired
 	private IDriverBusService busDriver;
 
-	@PostMapping("/busDriver/create")
+	@PostMapping("/api/busDriver/create")
 	@Override
-	public void save(Tmio1BusDriver entity) {
+	public void save(@RequestBody Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
 		busDriver.save(entity);
 	}
 
-	@DeleteMapping("/busDriver/delete")
+	@DeleteMapping("/api/busDriver/delete")
 	@Override
-	public void delete(Tmio1BusDriver entity) {
+	public void delete(@RequestBody Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
 		busDriver.delete(entity);
 	}
 
-	@PutMapping("/busDriver/update")
+	@PutMapping("/api/busDriver/update")
 	@Override
-	public void update(Tmio1BusDriver entity) {
+	public void update(@RequestBody Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
 		busDriver.update(entity);
 	}
 
-	@GetMapping("/busDriver/busDriver/{id}")
+	@GetMapping("/api/busDriver/busDriver/{id}")
 	@Override
-	public Tmio1BusDriver findById(String id) {
+	public Tmio1BusDriver findById(@PathVariable String id) {
 		// TODO Auto-generated method stub
 		return busDriver.findById(id);
 	}
 
-	@GetMapping("/busDriver/busDrivers")
+	@GetMapping("/api/busDriver/busDrivers")
 	@Override
 	public List<Tmio1BusDriver> findAll() {
 		// TODO Auto-generated method stub

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import icesi.edu.co.stm.model.Tmio1Route;
@@ -18,35 +20,35 @@ public class RouteControllerRest implements IRouteControllerRest{
 	@Autowired
 	private IRouteService routeService;
 	
-	@PostMapping("/route/create")
+	@PostMapping("/api/route/create")
 	@Override
-	public void save(Tmio1Route entity) {
+	public void save(@RequestBody Tmio1Route entity) {
 		// TODO Auto-generated method stub
 		routeService.save(entity);
 	}
 
-	@DeleteMapping("/route/delete")
+	@DeleteMapping("/api/route/delete")
 	@Override
-	public void delete(Tmio1Route entity) {
+	public void delete(@RequestBody Tmio1Route entity) {
 		// TODO Auto-generated method stub
 		routeService.delete(entity);
 	}
 
-	@PutMapping("/route/update")
+	@PutMapping("/api/route/update")
 	@Override
-	public void update(Tmio1Route entity) {
+	public void update(@RequestBody Tmio1Route entity) {
 		// TODO Auto-generated method stub
 		routeService.update(entity);
 	}
 
-	@GetMapping("/route/route/{id}")
+	@GetMapping("/api/route/route/{id}")
 	@Override
-	public Tmio1Route findById(Integer id) {
+	public Tmio1Route findById(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		return routeService.findById(id);
 	}
 
-	@GetMapping("/route/routes")
+	@GetMapping("/api/route/routes")
 	@Override
 	public List<Tmio1Route> findAll() {
 		// TODO Auto-generated method stub

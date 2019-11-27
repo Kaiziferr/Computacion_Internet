@@ -7,9 +7,9 @@ public interface IControllerRest <T,K> {
 	
 	public void save(T entity);
 	
-	public void delete(T entity);
+	public void delete(K id);
 	
-	public void update(T entity);
+	public void update(T entity, K id);
 
 	public T findById(K id);
 	

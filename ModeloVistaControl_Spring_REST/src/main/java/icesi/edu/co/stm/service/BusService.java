@@ -30,16 +30,19 @@ public class BusService implements IBusService{
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void delete(Tmio1Bus entity) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		iBusDao.delete(entity);
+		Tmio1Bus bus = findById(id);
+		iBusDao.delete(bus);
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void update(Tmio1Bus entity) {
+	public void update(Tmio1Bus entity,Integer id) {
 		// TODO Auto-generated method stub
-		iBusDao.update(entity);
+		Tmio1Bus bus = findById(id);
+		bus = entity;
+		iBusDao.save(bus);
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
