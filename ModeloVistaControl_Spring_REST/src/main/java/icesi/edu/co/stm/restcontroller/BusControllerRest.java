@@ -25,7 +25,7 @@ public class BusControllerRest implements IBusControllerRest{
 	@Override
 	public void save(@RequestBody Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		System.out.println("Congratulation" +entity);
+
 		busService.save(entity);
 	}
 
