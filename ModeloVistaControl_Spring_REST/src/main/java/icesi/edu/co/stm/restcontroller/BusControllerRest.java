@@ -21,7 +21,7 @@ public class BusControllerRest implements IBusControllerRest{
 	private IBusService busService;
 	
 	
-	@PostMapping("/api/buses/create")
+	@PostMapping("/api/buses")
 	@Override
 	public void save(@RequestBody Tmio1Bus entity) {
 		// TODO Auto-generated method stub
@@ -29,28 +29,28 @@ public class BusControllerRest implements IBusControllerRest{
 		busService.save(entity);
 	}
 
-	@DeleteMapping("/api/buses/delete/{id}")
+	@DeleteMapping("/api/buses/{id}")
 	@Override
 	public void delete(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		busService.delete(id);
 	}
 
-	@PutMapping("/api/buses/update/{id}")
+	@PutMapping("/api/buses/{id}")
 	@Override
 	public void update(@RequestBody Tmio1Bus entity, @PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		busService.update(entity,id);
 	}
 	
-	@GetMapping("/api/buses/bus/{id}")
+	@GetMapping("/api/buses/{id}")
 	@Override
 	public Tmio1Bus findById(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		return busService.findById(id);
 	}
 
-	@GetMapping("/api/buses/buses")
+	@GetMapping("/api/buses")
 	@Override
 	public List<Tmio1Bus> findAll() {
 		// TODO Auto-generated method stub

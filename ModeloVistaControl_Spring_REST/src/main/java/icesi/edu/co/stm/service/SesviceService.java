@@ -30,16 +30,21 @@ public class SesviceService implements IServiceService{
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void delete(Tmio1Servicio entity) {
+	public void delete(Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
-		iServiceDao.delete(entity);
+		Tmio1Servicio serviceDelete = iServiceDao.findById(id);
+		iServiceDao.findById(id);
 	}
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void update(Tmio1Servicio entity) {
+	public void update(Tmio1Servicio entity, Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
-		iServiceDao.update(entity);
+		Tmio1Servicio serviceUpdate = iServiceDao.findById(id);
+		serviceUpdate.setTmio1Bus(entity.getTmio1Bus());
+		serviceUpdate.setTmio1Conductore(entity.getTmio1Conductore());
+		serviceUpdate.setTmio1Ruta(entity.getTmio1Ruta());
+		serviceUpdate.setId(entity.getId());
 	}
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)

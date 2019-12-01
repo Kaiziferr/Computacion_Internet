@@ -41,8 +41,13 @@ public class BusService implements IBusService{
 	public void update(Tmio1Bus entity,Integer id) {
 		// TODO Auto-generated method stub
 		Tmio1Bus bus = findById(id);
-		bus = entity;
-		iBusDao.save(bus);
+		bus.setCapacidad(entity.getCapacidad());
+		bus.setMarca(entity.getMarca());
+		bus.setModelo(entity.getModelo());
+		bus.setPlaca(entity.getPlaca());
+		bus.setTipo(entity.getTipo());
+		bus.setTmio1Servicios(entity.getTmio1Servicios());
+		bus.setTmio1ServiciosSitios(entity.getTmio1ServiciosSitios());
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)

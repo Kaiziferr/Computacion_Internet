@@ -61,22 +61,18 @@ public class Tmio1Route implements Serializable {
 	@NonNull
 	private String numero;
 
-	/**
-	 * 
-	 
 	//bi-directional many-to-one association to Tmio1Servicio
 	@OneToMany(mappedBy="tmio1Ruta")
 	private List<Tmio1Servicio> tmio1Servicios;
-
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
 	@OneToMany(mappedBy="tmio1Ruta")
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
-
+	
 	//bi-directional many-to-one association to Tmio1SitiosRuta
 	@OneToMany(mappedBy="tmio1Ruta1")
 	private List<Tmio1SitiosRuta> tmio1SitiosRutas1;
-
 	//bi-directional many-to-one association to Tmio1SitiosRuta
+
 	@OneToMany(mappedBy="tmio1Ruta2")
 	private List<Tmio1SitiosRuta> tmio1SitiosRutas2;
 
@@ -137,5 +133,4 @@ public class Tmio1Route implements Serializable {
 
 		return tmio1SitiosRutas2;
 	}
-*/
 }

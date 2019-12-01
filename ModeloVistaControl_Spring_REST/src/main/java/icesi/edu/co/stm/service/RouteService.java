@@ -27,15 +27,27 @@ public class RouteService implements IRouteService{
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void delete(Tmio1Route entity) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		iRouteDao.delete(entity);
+		Tmio1Route route = iRouteDao.findById(id);
+		iRouteDao.delete(route);
 	}
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void update(Tmio1Route entity) {
+	public void update(Tmio1Route entity, Integer id) {
 		// TODO Auto-generated method stub
-		iRouteDao.update(entity);
+		Tmio1Route route = iRouteDao.findById(id);
+		route.setActiva(entity.getActiva());
+		route.setDescripcion(entity.getDescripcion());
+		route.setDiaFin(entity.getDiaFin());
+		route.setDiaInicio(entity.getDiaInicio());
+		route.setHoraFin(entity.getHoraFin());
+		route.setHoraInicio(entity.getHoraInicio());
+		route.setNumero(entity.getNumero());
+		route.setTmio1Servicios(entity.getTmio1Servicios());
+		route.setTmio1ServiciosSitios(entity.getTmio1ServiciosSitios());
+		route.setTmio1SitiosRutas1(entity.getTmio1SitiosRutas1());
+		route.setTmio1SitiosRutas2(entity.getTmio1SitiosRutas2());
 	}
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)

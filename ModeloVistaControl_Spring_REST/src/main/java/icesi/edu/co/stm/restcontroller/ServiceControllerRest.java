@@ -21,35 +21,35 @@ public class ServiceControllerRest implements IServiceControllerRest{
 	@Autowired
 	private IServiceService serviceService;
 	
-	@PostMapping("/api/service/create")
+	@PostMapping("/api/service")
 	@Override
 	public void save(@RequestBody Tmio1Servicio entity) {
 		// TODO Auto-generated method stub
 		serviceService.save(entity);
 	}
 
-	@DeleteMapping("/api/service/delete")
+	@DeleteMapping("/api/service")
 	@Override
-	public void delete(@RequestBody Tmio1Servicio entity) {
+	public void delete(@PathVariable Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
-		serviceService.delete(entity);
+		serviceService.delete(id);
 	}
 
-	@PutMapping("/api/service/update")
+	@PutMapping("/api/service")
 	@Override
-	public void update(@RequestBody Tmio1Servicio entity) {
+	public void update(@RequestBody Tmio1Servicio entity, @PathVariable Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
-		serviceService.delete(entity);
+		serviceService.update(entity,id);
 	}
 
-	@GetMapping("/api/service/service/{id}")
+	@GetMapping("/api/service/{id}")
 	@Override
 	public Tmio1Servicio findById(@PathVariable Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
 		return serviceService.findById(id);
 	}
 	
-	@GetMapping("/api/service/services")
+	@GetMapping("/api/service")
 	@Override
 	public List<Tmio1Servicio> findAll() {
 		// TODO Auto-generated method stub

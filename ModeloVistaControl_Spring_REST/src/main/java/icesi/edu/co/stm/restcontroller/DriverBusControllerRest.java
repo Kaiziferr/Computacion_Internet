@@ -20,35 +20,35 @@ public class DriverBusControllerRest implements IDriverBusControllerRest{
 	@Autowired
 	private IDriverBusService busDriver;
 
-	@PostMapping("/api/busDriver/create")
+	@PostMapping("/api/busDriver")
 	@Override
 	public void save(@RequestBody Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
 		busDriver.save(entity);
 	}
 
-	@DeleteMapping("/api/busDriver/delete")
+	@DeleteMapping("/api/busDriver/{id}")
 	@Override
-	public void delete(@RequestBody Tmio1BusDriver entity) {
+	public void delete(@PathVariable String id) {
 		// TODO Auto-generated method stub
-		busDriver.delete(entity);
+		busDriver.delete(id);
 	}
 
-	@PutMapping("/api/busDriver/update")
+	@PutMapping("/api/busDriver/{id}")
 	@Override
-	public void update(@RequestBody Tmio1BusDriver entity) {
+	public void update(@RequestBody Tmio1BusDriver entity, @PathVariable String id) {
 		// TODO Auto-generated method stub
-		busDriver.update(entity);
+		busDriver.update(entity, id);
 	}
 
-	@GetMapping("/api/busDriver/busDriver/{id}")
+	@GetMapping("/api/busDriver/{id}")
 	@Override
 	public Tmio1BusDriver findById(@PathVariable String id) {
 		// TODO Auto-generated method stub
 		return busDriver.findById(id);
 	}
 
-	@GetMapping("/api/busDriver/busDrivers")
+	@GetMapping("/api/busDriver")
 	@Override
 	public List<Tmio1BusDriver> findAll() {
 		// TODO Auto-generated method stub

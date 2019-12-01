@@ -20,35 +20,35 @@ public class RouteControllerRest implements IRouteControllerRest{
 	@Autowired
 	private IRouteService routeService;
 	
-	@PostMapping("/api/route/create")
+	@PostMapping("/api/route")
 	@Override
 	public void save(@RequestBody Tmio1Route entity) {
 		// TODO Auto-generated method stub
 		routeService.save(entity);
 	}
 
-	@DeleteMapping("/api/route/delete")
+	@DeleteMapping("/api/route")
 	@Override
-	public void delete(@RequestBody Tmio1Route entity) {
+	public void delete(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		routeService.delete(entity);
+		routeService.delete(id);
 	}
 
-	@PutMapping("/api/route/update")
+	@PutMapping("/api/route/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Route entity) {
+	public void update(@RequestBody Tmio1Route entity, @PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		routeService.update(entity);
+		routeService.update(entity, id);
 	}
 
-	@GetMapping("/api/route/route/{id}")
+	@GetMapping("/api/route/{id}")
 	@Override
 	public Tmio1Route findById(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		return routeService.findById(id);
 	}
 
-	@GetMapping("/api/route/routes")
+	@GetMapping("/api/route")
 	@Override
 	public List<Tmio1Route> findAll() {
 		// TODO Auto-generated method stub

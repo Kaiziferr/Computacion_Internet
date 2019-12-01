@@ -30,16 +30,25 @@ public class DriverBusService implements IDriverBusService{
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void delete(Tmio1BusDriver entity) {
+	public void delete(String id) {
 		// TODO Auto-generated method stub
-		iBusDriverDao.delete(entity);
+		Tmio1BusDriver busDriverDelete = iBusDriverDao.findById(id);
+		iBusDriverDao.delete(busDriverDelete);
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void update(Tmio1BusDriver entity) {
+	public void update(Tmio1BusDriver entity,String id) {
 		// TODO Auto-generated method stub
-		iBusDriverDao.update(entity);
+		Tmio1BusDriver busDriverUpdate = iBusDriverDao.findById(id);
+		busDriverUpdate.setApellido(entity.getApellido());
+		busDriverUpdate.setFechaContratacion(entity.getFechaContratacion());
+		busDriverUpdate.setFechaNacimiento(entity.getFechaNacimiento());
+		busDriverUpdate.setNombre(entity.getNombre());
+		busDriverUpdate.setTmio1Servicios(entity.getTmio1Servicios());
+		busDriverUpdate.setTmio1ServiciosSitios(entity.getTmio1ServiciosSitios());
+		busDriverUpdate.setCedula(entity.getCedula());
+	
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
