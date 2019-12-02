@@ -26,7 +26,7 @@ public class ServiceDelegate implements IServiceDelegate{
 	@Override
 	public void save(Tmio1Servicio entity) {
 		// TODO Auto-generated method stub
-		TransactionBody<Tmio1Servicio,Tmio1ServicioPK> transaction = new TransactionBody<>("newBus", entity,null);
+		TransactionBody<Tmio1Servicio,Tmio1ServicioPK> transaction = new TransactionBody<>("newService", entity,null);
 		HttpEntity<TransactionBody<Tmio1Servicio,Tmio1ServicioPK>> request = new HttpEntity<>(transaction);
 		ResponseEntity<TransactionBody<Tmio1Servicio,Tmio1ServicioPK>> response = null;
 
@@ -38,7 +38,7 @@ public class ServiceDelegate implements IServiceDelegate{
 	@Override
 	public void delete(Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
-		TransactionBody<Tmio1Servicio,Tmio1ServicioPK> transaction = new TransactionBody<>("delBus", null,id);
+		TransactionBody<Tmio1Servicio,Tmio1ServicioPK> transaction = new TransactionBody<>("delService", null,id);
 		HttpEntity<TransactionBody<Tmio1Servicio,Tmio1ServicioPK>> request = new HttpEntity<>(transaction);
 		ResponseEntity<TransactionBody<Tmio1Servicio,Tmio1ServicioPK>> response = null;
 

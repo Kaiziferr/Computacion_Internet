@@ -20,39 +20,39 @@ public class BusController implements IBusController{
 	private IBusDelegate iBusDelegate; 
 	
 	
-	@GetMapping("/bus/buses")
+	@GetMapping("/buses")
 	@Override
 	public Iterable<Tmio1Bus> getALL() {
 		// TODO Auto-generated method stub
 		return iBusDelegate.findAll();
 	}
 
-	@GetMapping("/bus/bus/{id}")
+	@GetMapping("/buses/{id}")
 	@Override
 	public Tmio1Bus get(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		return iBusDelegate.findById(id);
 	}
 	
-	@PostMapping("/bus/create")
+	@PostMapping("/buses")
 	@Override
 	public void add(@RequestBody Tmio1Bus entity) {
 		// TODO Auto-generated method stub
 		 iBusDelegate.save(entity);
 	}
 	
-	@PutMapping("/bus/update")
+	@PutMapping("/buses/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Bus entity) {
+	public void update(@RequestBody Tmio1Bus entity,@PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		iBusDelegate.delete(entity);
+		iBusDelegate.update(entity,id);
 	}
 
-	@DeleteMapping("/bus/delete")
+	@DeleteMapping("/buses/{id}")
 	@Override
-	public void delete(@RequestBody Tmio1Bus entity) {
+	public void delete(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		iBusDelegate.update(entity);
+		iBusDelegate.delete(id);
 	}
 
 }

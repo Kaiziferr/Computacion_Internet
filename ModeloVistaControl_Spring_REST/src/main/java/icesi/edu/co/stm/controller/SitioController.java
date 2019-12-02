@@ -18,39 +18,39 @@ public class SitioController implements ISitioController{
 	@Autowired
 	private ISitioDelegate iSitioDelegate;
 	
-	@GetMapping("/sitio/sitios")
+	@GetMapping("/sitio")
 	@Override
 	public Iterable<Tmio1Sitio> getALL() {
 		// TODO Auto-generated method stub
 		return iSitioDelegate.findAll();
 	}
 
-	@GetMapping("/sitio/sitio")
+	@GetMapping("/sitio/{id}")
 	@Override
 	public Tmio1Sitio get(@PathVariable Long id) {
 		// TODO Auto-generated method stub
 		return iSitioDelegate.findById(id);
 	}
 
-	@PostMapping("/sitio/create")
+	@PostMapping("/sitio")
 	@Override
 	public void add(@RequestBody Tmio1Sitio entity) {
 		// TODO Auto-generated method stub
 		iSitioDelegate.save(entity);
 	}
 
-	@PutMapping("/sitio/update")
+	@PutMapping("/sitio/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Sitio entity) {
+	public void update(@RequestBody Tmio1Sitio entity,@PathVariable Long id) {
 		// TODO Auto-generated method stub
-		iSitioDelegate.update(entity);
+		iSitioDelegate.update(entity,id);
 	}
 
-	@DeleteMapping("/sitio/delete")
+	@DeleteMapping("/sitio/{id}")
 	@Override
-	public void delete(@RequestBody Tmio1Sitio entity) {
+	public void delete(@PathVariable Long id) {
 		// TODO Auto-generated method stub
-		iSitioDelegate.delete(entity);
+		iSitioDelegate.delete(id);
 	}
 
 }

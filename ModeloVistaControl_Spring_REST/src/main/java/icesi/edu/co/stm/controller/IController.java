@@ -8,8 +8,8 @@ public interface IController <T,K>{
 	
 	public void add(T entity);
 	
-	public void update(T entity);
+	public void update(T entity, K id);
 	
-	public void delete(T entity);
+	public void delete(K id);
 	
 }

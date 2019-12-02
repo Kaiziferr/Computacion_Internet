@@ -18,39 +18,39 @@ public class RouteController implements IRouteController{
 	@Autowired
 	private IRouteDelegate iRouteDelegate; 
 	
-	@GetMapping("/route/routes")
+	@GetMapping("/route")
 	@Override
 	public Iterable<Tmio1Route> getALL() {
 		// TODO Auto-generated method stub
 		return iRouteDelegate.findAll();
 	}
 
-	@GetMapping("/route/route/{id}")
+	@GetMapping("/route/{id}")
 	@Override
 	public Tmio1Route get(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		return iRouteDelegate.findById(id);
 	}
 
-	@PostMapping("/route/create")
+	@PostMapping("/route")
 	@Override
 	public void add(@RequestBody Tmio1Route entity) {
 		// TODO Auto-generated method stub
 		iRouteDelegate.save(entity);
 	}
 
-	@PutMapping("/route/update")
+	@PutMapping("/route/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Route entity) {
+	public void update(@RequestBody Tmio1Route entity,@PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		iRouteDelegate.update(entity);
+		iRouteDelegate.update(entity,id);
 	}
 
-	@DeleteMapping("/route/delete")
+	@DeleteMapping("/route/delete/{id}")
 	@Override
-	public void delete(@RequestBody Tmio1Route entity) {
+	public void delete(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		iRouteDelegate.delete(entity);
+		iRouteDelegate.delete(id);
 	}
 	
 

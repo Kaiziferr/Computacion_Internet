@@ -18,39 +18,39 @@ public class BusDriverController implements IBusDriverController{
 	@Autowired
 	private IDriverBusDelegate iDriverBusDelegate;
 	
-	@GetMapping("/busdriver/busdrivers")
+	@GetMapping("/busdriver")
 	@Override
 	public Iterable<Tmio1BusDriver> getALL() {
 		// TODO Auto-generated method stub
 		return iDriverBusDelegate.findAll();
 	}
 
-	@GetMapping("/busdriver/busdriver/{id}")
+	@GetMapping("/busdriver/{id}")
 	@Override
 	public Tmio1BusDriver get(@PathVariable String id) {
 		// TODO Auto-generated method stub
 		return iDriverBusDelegate.findById(id);
 	}
 	
-	@PostMapping("/busdriver/create")
+	@PostMapping("/busdriver")
 	@Override
 	public void add(@RequestBody Tmio1BusDriver entity) {
 		// TODO Auto-generated method stub
 		iDriverBusDelegate.save(entity);
 	}
 
-	@PutMapping("/busdriver/update")
+	@PutMapping("/busdriver/{id}")
 	@Override
-	public void update(@RequestBody Tmio1BusDriver entity) {
+	public void update(@RequestBody Tmio1BusDriver entity,@PathVariable String id) {
 		// TODO Auto-generated method stub
-		iDriverBusDelegate.update(entity);
+		iDriverBusDelegate.update(entity,id);
 	}
 
-	@DeleteMapping("/busdriver/delete")
+	@DeleteMapping("/busdriver/{id}")
 	@Override
-	public void delete(@RequestBody Tmio1BusDriver entity) {
+	public void delete(@PathVariable String id) {
 		// TODO Auto-generated method stub
-		iDriverBusDelegate.delete(entity);
+		iDriverBusDelegate.delete(id);
 	}
 	
 	

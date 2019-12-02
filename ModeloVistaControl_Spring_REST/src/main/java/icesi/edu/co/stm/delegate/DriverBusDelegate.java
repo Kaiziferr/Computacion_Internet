@@ -62,7 +62,7 @@ public class DriverBusDelegate implements IDriverBusDelegate{
 	@Override
 	public Tmio1BusDriver findById(String id) {
 		// TODO Auto-generated method stub
-		TransactionBody<Tmio1BusDriver,String> transaction = new TransactionBody<>("busId",null,  id);
+		TransactionBody<Tmio1BusDriver,String> transaction = new TransactionBody<>("busDriverId",null,  id);
 		HttpEntity<TransactionBody<Tmio1BusDriver,String>> request = new HttpEntity<>(transaction);
 		ResponseEntity<TransactionBody<Tmio1BusDriver,String>> response = null;
 
@@ -83,7 +83,7 @@ public class DriverBusDelegate implements IDriverBusDelegate{
 	@Override
 	public Iterable<Tmio1BusDriver> findAll() {
 		// TODO Auto-generated method stub
-		TransactionBody<List<Tmio1BusDriver>,String> transaction = new TransactionBody<>("busList",new ArrayList<Tmio1BusDriver>());
+		TransactionBody<List<Tmio1BusDriver>,String> transaction = new TransactionBody<>("busDriverList",new ArrayList<Tmio1BusDriver>());
 		HttpEntity<TransactionBody<List<Tmio1BusDriver>,String>> request = new HttpEntity<>(transaction);
 		ResponseEntity<TransactionBody<List<Tmio1BusDriver>,String>> response = null;
 	
