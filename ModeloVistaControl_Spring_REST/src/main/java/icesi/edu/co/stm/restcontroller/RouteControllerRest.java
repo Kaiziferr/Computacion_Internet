@@ -27,7 +27,7 @@ public class RouteControllerRest implements IRouteControllerRest{
 		routeService.save(entity);
 	}
 
-	@DeleteMapping("/api/route")
+	@DeleteMapping("/api/route/{id}")
 	@Override
 	public void delete(@PathVariable Integer id) {
 		// TODO Auto-generated method stub

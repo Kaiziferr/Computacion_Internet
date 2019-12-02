@@ -7,59 +7,58 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import icesi.edu.co.stm.dao.IServiceDao;
-import icesi.edu.co.stm.model.Tmio1Servicio;
-import icesi.edu.co.stm.model.Tmio1ServicioPK;
+import icesi.edu.co.stm.dao.ISitioDao;
+import icesi.edu.co.stm.model.Tmio1Sitio;
 
 @Service
-public class SesviceService implements IServiceService{
+public class SitioService implements ISitioService{
+
+	private ISitioDao iSitioDao;
 	
-	private IServiceDao iServiceDao;  
 	@Autowired
-	public SesviceService(IServiceDao iServiceDao) {
-		// TODO Auto-generated constructor stub
-		this.iServiceDao = iServiceDao;
+	public SitioService(ISitioDao iSitioDao) {
+		this.iSitioDao = iSitioDao;
 	}
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void save(Tmio1Servicio entity) {
+	public void save(Tmio1Sitio entity) {
 		// TODO Auto-generated method stub
-		iServiceDao.save(entity);
+		iSitioDao.save(entity);
 	}
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void delete(Tmio1ServicioPK id) {
+	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		Tmio1Servicio serviceDelete = iServiceDao.findById(id);
-		iServiceDao.delete(serviceDelete);
+		Tmio1Sitio sitioDelete = iSitioDao.findById(id);
+		iSitioDao.delete(sitioDelete);
 	}
-	
+
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public void update(Tmio1Servicio entity, Tmio1ServicioPK id) {
+	public void update(Tmio1Sitio entity, Long id) {
 		// TODO Auto-generated method stub
-		Tmio1Servicio serviceUpdate = iServiceDao.findById(id);
-		serviceUpdate.setTmio1Bus(entity.getTmio1Bus());
-		serviceUpdate.setTmio1Conductore(entity.getTmio1Conductore());
-		serviceUpdate.setTmio1Ruta(entity.getTmio1Ruta());
-		serviceUpdate.setId(entity.getId());
+		Tmio1Sitio sitioUpdate = iSitioDao.findById(id);
+		sitioUpdate.setDescripcion(entity.getDescripcion());
+		sitioUpdate.setNombre(entity.getNombre());
+		sitioUpdate.setTmio1ServiciosSitios(entity.getTmio1ServiciosSitios());
+		sitioUpdate.setTmio1SitiosRutas1(entity.getTmio1SitiosRutas1());
+		sitioUpdate.setTmio1SitiosRutas2(entity.getTmio1SitiosRutas2());
 	}
-	
+
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public Tmio1Servicio findById(Tmio1ServicioPK id) {
+	public Tmio1Sitio findById(Long id) {
 		// TODO Auto-generated method stub
-		return iServiceDao.findById(id);
+		return iSitioDao.findById(id);
 	}
-	
+
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public List<Tmio1Servicio> findAll() {
+	public List<Tmio1Sitio> findAll() {
 		// TODO Auto-generated method stub
-		return iServiceDao.findAll();
+		return iSitioDao.findAll();
 	}
-	
-	
+
 }

@@ -28,14 +28,14 @@ public class ServiceControllerRest implements IServiceControllerRest{
 		serviceService.save(entity);
 	}
 
-	@DeleteMapping("/api/service")
+	@DeleteMapping("/api/service/{id}")
 	@Override
 	public void delete(@PathVariable Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
 		serviceService.delete(id);
 	}
 
-	@PutMapping("/api/service")
+	@PutMapping("/api/service/{id}")
 	@Override
 	public void update(@RequestBody Tmio1Servicio entity, @PathVariable Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub

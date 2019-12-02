@@ -5,12 +5,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 import org.springframework.stereotype.Repository;
 
 import icesi.edu.co.stm.model.Tmio1BusDriver;
-import icesi.edu.co.stm.model.Tmio1Servicio;
 @Repository
 public class BusDriverDao implements IBusDriverDao{
 
