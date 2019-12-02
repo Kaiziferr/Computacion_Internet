@@ -24,45 +24,52 @@ public class BusDelegate implements IBusDelegate{
 		restTemplate = new RestTemplate();
 	}
 
-	
 	@Override
-	public Tmio1Bus save(Tmio1Bus entity) {
+	public void save(Tmio1Bus entity) {
 		// TODO Auto-generated method stub
-		TransactionBody<Tmio1Bus> transaction = new TransactionBody<>("newCar", entity);
-		HttpEntity<TransactionBody<Tmio1Bus>> request = new HttpEntity<>(transaction);
-		ResponseEntity<TransactionBody<Tmio1Bus>> response = null;
+		TransactionBody<Tmio1Bus,Integer> transaction = new TransactionBody<>("newBus", entity,null);
+		HttpEntity<TransactionBody<Tmio1Bus,Integer>> request = new HttpEntity<>(transaction);
+		ResponseEntity<TransactionBody<Tmio1Bus,Integer>> response = null;
 
-		response = restTemplate.exchange(URI + "/buses/create", HttpMethod.POST, request,
-				new ParameterizedTypeReference<TransactionBody<Tmio1Bus>>() {
+		response = restTemplate.exchange(URI + "/api/buses", HttpMethod.POST, request,
+				new ParameterizedTypeReference<TransactionBody<Tmio1Bus,Integer>>() {
 				});
-		System.out.println(entity);
-
-		return entity;
-		
 	}
 
 	@Override
-	public Tmio1Bus delete(Tmio1Bus entity) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		TransactionBody<Tmio1Bus,Integer> transaction = new TransactionBody<>("delBus", null,id);
+		HttpEntity<TransactionBody<Tmio1Bus,Integer>> request = new HttpEntity<>(transaction);
+		ResponseEntity<TransactionBody<Tmio1Bus,Integer>> response = null;
+
+		response = restTemplate.exchange(URI + "/api/buses/"+id, HttpMethod.DELETE, request,
+				new ParameterizedTypeReference<TransactionBody<Tmio1Bus,Integer>>() {
+				});
 	}
 
 	@Override
-	public Tmio1Bus update(Tmio1Bus entity) {
+	public void update(Tmio1Bus entity,Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		TransactionBody<Tmio1Bus,Integer> transaction = new TransactionBody<>("updateBus", entity,id);
+		HttpEntity<TransactionBody<Tmio1Bus,Integer>> request = new HttpEntity<>(transaction);
+		ResponseEntity<TransactionBody<Tmio1Bus,Integer>> response = null;
+
+		response = restTemplate.exchange(URI + "/api/buses/"+id, HttpMethod.PUT, request,
+				new ParameterizedTypeReference<TransactionBody<Tmio1Bus,Integer>>() {
+				});
 	}
 
 	@Override
 	public Tmio1Bus findById(Integer id) {
 		// TODO Auto-generated method stub
 		
-		TransactionBody<Integer> transaction = new TransactionBody<>("busid",  id);
-		HttpEntity<TransactionBody<Integer>> request = new HttpEntity<>(transaction);
-		ResponseEntity<TransactionBody<Tmio1Bus>> response = null;
+		TransactionBody<Tmio1Bus,Integer> transaction = new TransactionBody<>("busId",null,  id);
+		HttpEntity<TransactionBody<Tmio1Bus,Integer>> request = new HttpEntity<>(transaction);
+		ResponseEntity<TransactionBody<Tmio1Bus,Integer>> response = null;
 
-		response = restTemplate.exchange(URI + "/buses/bus/"+id, HttpMethod.GET, request,
-				new ParameterizedTypeReference<TransactionBody<Tmio1Bus>>() {
+		response = restTemplate.exchange(URI + "/api/buses/"+id, HttpMethod.GET, request,
+				new ParameterizedTypeReference<TransactionBody<Tmio1Bus,Integer>>() {
 				});
 		try {
 
@@ -78,11 +85,11 @@ public class BusDelegate implements IBusDelegate{
 	@Override
 	public Iterable<Tmio1Bus> findAll() {
 		// TODO Auto-generated method stub
-		TransactionBody<List<Tmio1Bus>> transaction = new TransactionBody<>("busList",new ArrayList<Tmio1Bus>());
-		HttpEntity<TransactionBody<List<Tmio1Bus>>> request = new HttpEntity<>(transaction);
-		ResponseEntity<TransactionBody<List<Tmio1Bus>>> response = null;
+		TransactionBody<List<Tmio1Bus>,Integer> transaction = new TransactionBody<>("busList",new ArrayList<Tmio1Bus>());
+		HttpEntity<TransactionBody<List<Tmio1Bus>,Integer>> request = new HttpEntity<>(transaction);
+		ResponseEntity<TransactionBody<List<Tmio1Bus>,Integer>> response = null;
 	
-		response = restTemplate.exchange(URI+"/buses/buses",HttpMethod.GET, request,new ParameterizedTypeReference<TransactionBody<List<Tmio1Bus>>>() {
+		response = restTemplate.exchange(URI+"/api/buses",HttpMethod.GET, request,new ParameterizedTypeReference<TransactionBody<List<Tmio1Bus>,Integer>>() {
 		});
 		try {
 			Iterable<Tmio1Bus> tbus = response.getBody().getBody();

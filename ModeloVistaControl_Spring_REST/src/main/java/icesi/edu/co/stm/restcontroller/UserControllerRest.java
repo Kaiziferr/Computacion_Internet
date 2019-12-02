@@ -14,45 +14,36 @@ import icesi.edu.co.stm.service.IUserService;
 
 @RestController
 public class UserControllerRest implements IUserControllerRest{
-	
-	@Autowired
-	private IUserService userService;
 
-	@PostMapping("/user/create")
 	@Override
 	public void save(Tmio1User entity) {
 		// TODO Auto-generated method stub
-		userService.save(entity);
+		
 	}
 
-	@DeleteMapping("/user/delete")
 	@Override
-	public void delete(Tmio1User entity) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		userService.delete(entity);
+		
 	}
 
-	@PutMapping("/user/update")
 	@Override
-	public void update(Tmio1User entity) {
+	public void update(Tmio1User entity, Integer id) {
 		// TODO Auto-generated method stub
-		userService.update(entity);
+		
 	}
 
-	@GetMapping("/user/user/{id}")
 	@Override
 	public Tmio1User findById(Integer id) {
 		// TODO Auto-generated method stub
-		return userService.findById(id);
+		return null;
 	}
-	
-	@GetMapping("/user/users")
+
 	@Override
 	public List<Tmio1User> findAll() {
 		// TODO Auto-generated method stub
-		return userService.findAll();
+		return null;
 	}
-	
 	
 	
 }
