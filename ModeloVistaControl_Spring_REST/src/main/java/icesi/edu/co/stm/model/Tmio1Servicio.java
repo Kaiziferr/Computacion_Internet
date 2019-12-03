@@ -3,6 +3,8 @@ package icesi.edu.co.stm.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 
@@ -33,6 +35,7 @@ public class Tmio1Servicio implements Serializable {
 
 	//bi-directional many-to-one association to Tmio1Ruta
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="id_ruta", insertable=false, updatable=false)
 	private Tmio1Route tmio1Ruta;
 

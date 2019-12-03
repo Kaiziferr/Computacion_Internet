@@ -61,22 +61,37 @@ public class BusController implements IBusController {
 		return "redirect:/buses";
 	}
 
-	@PutMapping("/buses/{id}")
+
 	@Override
-	public void update(@RequestBody Tmio1Bus entity, @PathVariable Integer id) {
+	@GetMapping("/buses/remove/{id}")
+	public String remove(@PathVariable Integer id) {
+		iBusDelegate.delete(id);
+		return "redirect:/buses";
+	}
+	
+	@GetMapping("/buses/update/{id}")
+	@Override
+	public String update(Model model) {
 		// TODO Auto-generated method stub
-		iBusDelegate.update(entity, id);
+		model.addAttribute("tmio1Bus",new Tmio1Bus());
+		return "buses/update-bus";
 	}
 
-	@DeleteMapping("/buses/delete/{id}")
+	@PutMapping("/buses/update/{id}")
 	@Override
-	public String delete(@Validated(Step1.class) Tmio1Bus entity, BindingResult bindingResult,
-			@RequestParam(value = "action", required = true) String action, Integer id) {
+	public String update(@Validated(Step1.class) Tmio1Bus entity, BindingResult bindingResult,
+			@RequestParam(value = "action", required = true) String action, Model model) {
 		// TODO Auto-generated method stub
-		return null;
+		if (!action.equals("Cancel")) {
+			if (bindingResult.hasErrors()) {
+				return "buses/update-bus";
+			}
+		
+		}
+		return "redirect:/buses";
 	}
 
-
+	
 
 
 

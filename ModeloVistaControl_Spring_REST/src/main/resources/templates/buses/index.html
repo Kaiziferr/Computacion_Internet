@@ -43,10 +43,8 @@
 								<td class="text-info" th:text="${bus.modelo}"></td>
 								<td class="text-info" th:text="${bus.placa}"></td>
 								<td class="text-info" th:text="${bus.tipo}"></td>
-								<td class="col-md-1 mt-1"><input type="submit" name="action" class="btn btn-primary"
-								value="Add"></td>
-						<td class="col-md-1 mt-1"><input type="submit" name="action" class="btn btn-primary"
-								value="Add"></td>
+							<td><a th:href="@{/buses/update/{id}(id=${bus.id})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
+							<td><a th:href="@{/buses/remove/{id}(id=${bus.id})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
 							</tr>
 							
 						</tbody>

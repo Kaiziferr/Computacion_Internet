@@ -2,6 +2,8 @@ package icesi.edu.co.stm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,43 +16,55 @@ import icesi.edu.co.stm.model.Tmio1Route;
 
 @Controller
 public class RouteController implements IRouteController {
-
+	
 	@Autowired
 	private IRouteDelegate iRouteDelegate;
-/*
-	@GetMapping("/route")
+
+	
 	@Override
-	public Iterable<Tmio1Route> getALL() {
+	public String getALL(Model model) {
 		// TODO Auto-generated method stub
-		return iRouteDelegate.findAll();
+		return null;
 	}
 
-	@GetMapping("/route/{id}")
 	@Override
-	public Tmio1Route get(@PathVariable Integer id) {
+	public Tmio1Route get(Integer id) {
 		// TODO Auto-generated method stub
-		return iRouteDelegate.findById(id);
+		return null;
+	}
+	
+	@GetMapping("/route/add")
+	@Override
+	public String add(Model model) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@PostMapping("/route")
+	@PostMapping("/route/add")
 	@Override
-	public void add(@RequestBody Tmio1Route entity) {
+	public String save(Tmio1Route entity, BindingResult bindingResult, String action, Model model) {
 		// TODO Auto-generated method stub
-		iRouteDelegate.save(entity);
+		return null;
 	}
 
-	@PutMapping("/route/{id}")
+	@GetMapping("(/route/")
 	@Override
-	public void update(@RequestBody Tmio1Route entity, @PathVariable Integer id) {
+	public String remove(Integer id) {
 		// TODO Auto-generated method stub
-		iRouteDelegate.update(entity, id);
+		return null;
 	}
 
-	@DeleteMapping("/route/{id}")
 	@Override
-	public void delete(@PathVariable Integer id) {
+	public String update(Model model) {
 		// TODO Auto-generated method stub
-		iRouteDelegate.delete(id);
+		return null;
 	}
-*/
+
+	@Override
+	public String update(Tmio1Route entity, BindingResult bindingResult, String action, Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	} 
+
+
 }

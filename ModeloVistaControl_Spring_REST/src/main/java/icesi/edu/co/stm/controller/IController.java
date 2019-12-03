@@ -13,9 +13,10 @@ public interface IController<T, K> {
 	
 	public String save(T entity, BindingResult bindingResult, String action, Model model);
 
-	public void update(T entity, K id);
-
-	public String delete(T entity, BindingResult bindingResult, String action, K id);
+	public String remove(K id);
 	
+	public String update(Model model);
+
+	public String update(T entity, BindingResult bindingResult, String action, Model model);
 
 }
