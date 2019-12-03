@@ -1,17 +1,16 @@
 package icesi.edu.co.stm.restcontroller;
 
-import java.util.List;
-
+import icesi.edu.co.stm.delegate.TransactionBody;
 
 public interface IControllerRest <T,K> {
 	
-	public void save(T entity);
+	public void save(TransactionBody<T,K> entity);
 	
 	public void delete(K id);
 	
 	public void update(T entity, K id);
 
 	public T findById(K id);
-	
-	public List<T> findAll();
+		
+	public TransactionBody<Iterable<T>, K> findAll();
 }

@@ -59,7 +59,7 @@ public class BusService implements IBusService{
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public List<Tmio1Bus> findAll() {
+	public Iterable<Tmio1Bus> findAll() {
 		// TODO Auto-generated method stub
 		return iBusDao.findAll();
 	}

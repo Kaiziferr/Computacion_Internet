@@ -1,6 +1,7 @@
 package icesi.edu.co.stm.restcontroller;
 
-import java.util.List;
+
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import icesi.edu.co.stm.delegate.TransactionBody;
 import icesi.edu.co.stm.model.Tmio1Bus;
 import icesi.edu.co.stm.service.IBusService;
 
@@ -23,10 +25,9 @@ public class BusControllerRest implements IBusControllerRest{
 	
 	@PostMapping("/api/buses")
 	@Override
-	public void save(@RequestBody Tmio1Bus entity) {
+	public void save(@RequestBody TransactionBody<Tmio1Bus,Integer> entity) {
 		// TODO Auto-generated method stub
-
-		busService.save(entity);
+		busService.save(entity.getBody());
 	}
 
 	@DeleteMapping("/api/buses/{id}")
@@ -49,11 +50,15 @@ public class BusControllerRest implements IBusControllerRest{
 		// TODO Auto-generated method stub
 		return busService.findById(id);
 	}
-
-	@GetMapping("/api/buses")
+	
+	@GetMapping("/api/buses")	
 	@Override
-	public List<Tmio1Bus> findAll() {
+	public TransactionBody<Iterable<Tmio1Bus>, Integer> findAll() {
 		// TODO Auto-generated method stub
-		return busService.findAll();
+		TransactionBody<Iterable<Tmio1Bus>,Integer> transaction = new TransactionBody<>("busList",busService.findAll());
+		return transaction;
 	}
+
+
+	
 }

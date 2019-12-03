@@ -40,10 +40,10 @@ public class BusDao implements IBusDao{
 	}
 
 	@Override
-	public List<Tmio1Bus> findAll() {
+	public Iterable<Tmio1Bus> findAll() {
 		// TODO Auto-generated method stub
 		String jpql = "Select b from Tmio1Bus b";
-		return entityManager.createQuery(jpql).getResultList();
+			return entityManager.createQuery(jpql).getResultList();
 	}
 
 	@Override

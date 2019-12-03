@@ -85,12 +85,11 @@ public class BusDelegate implements IBusDelegate{
 	@Override
 	public Iterable<Tmio1Bus> findAll() {
 		// TODO Auto-generated method stub
+		TransactionBody<Iterable<Tmio1Bus>,Integer> transaction = new TransactionBody<>("busList",new ArrayList<Tmio1Bus>());
+		HttpEntity<TransactionBody<Iterable<Tmio1Bus>,Integer>> request = new HttpEntity<>(transaction);
+		ResponseEntity<TransactionBody<Iterable<Tmio1Bus>,Integer>> response = null;
 	
-		TransactionBody<List<Tmio1Bus>,Integer> transaction = new TransactionBody<>("busList",new ArrayList<Tmio1Bus>());
-		HttpEntity<TransactionBody<List<Tmio1Bus>,Integer>> request = new HttpEntity<>(transaction);
-		ResponseEntity<TransactionBody<List<Tmio1Bus>,Integer>> response = null;
-	
-		response = restTemplate.exchange(URI+"/api/buses",HttpMethod.GET, request,new ParameterizedTypeReference<TransactionBody<List<Tmio1Bus>,Integer>>() {
+		response = restTemplate.exchange(URI+"/api/buses",HttpMethod.GET, request,new ParameterizedTypeReference<TransactionBody<Iterable<Tmio1Bus>,Integer>>() {
 		});
 		try {
 			Iterable<Tmio1Bus> tbus = response.getBody().getBody();
@@ -101,5 +100,8 @@ public class BusDelegate implements IBusDelegate{
 			return null;
 		}
 	}
+	
+	
+	
 
 }

@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
+import icesi.edu.co.stm.dao.IBusDao;
 import icesi.edu.co.stm.model.Tmio1Bus;
 import icesi.edu.co.stm.model.Tmio1BusDriver;
 import icesi.edu.co.stm.model.Tmio1Route;
@@ -32,9 +33,7 @@ public class StmApplication {
 		SpringApplication.run(StmApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner demo(IBusRepository busDao, IDriverBusRepository busDriverDao, IRouteRepository routeDao,
-			IServiceRepository serviceDao) {
+	public CommandLineRunner demo(IBusDao busDao) {
 		return (args) -> {
 			// BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			/*

@@ -1,7 +1,5 @@
 package icesi.edu.co.stm.delegate;
 
-import java.util.List;
-
 public interface IDelegate<T, K>{
 	
 	public void save(T entity);

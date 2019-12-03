@@ -12,5 +12,5 @@ public interface IServices <T,K>{
 	
 	public T findById(K id);
 	
-	public List<T> findAll();
+	public Iterable<T> findAll();
 }

@@ -37,10 +37,19 @@ public class BusController implements IBusController {
 		// TODO Auto-generated method stub
 		return iBusDelegate.findById(id);
 	}
-
-	@PostMapping("/buses")
+	
+	
+	@GetMapping("/buses/add")
 	@Override
-	public String add(@Validated(Step1.class) Tmio1Bus entity, BindingResult bindingResult,
+	public String add(Model model) {
+		// TODO Auto-generated method stub
+		model.addAttribute("tmio1Bus",new Tmio1Bus());
+		return "buses/add-bus";
+	}
+
+	@PostMapping("/buses/add")
+	@Override
+	public String save(@Validated(Step1.class) Tmio1Bus entity, BindingResult bindingResult,
 			@RequestParam(value = "action", required = true) String action, Model model) {
 		// TODO Auto-generated method stub
 		if (!action.equals("Cancel")) {
@@ -59,11 +68,18 @@ public class BusController implements IBusController {
 		iBusDelegate.update(entity, id);
 	}
 
-	@DeleteMapping("/buses/{id}")
+	@DeleteMapping("/buses/delete/{id}")
 	@Override
-	public void delete(@PathVariable Integer id) {
+	public String delete(@Validated(Step1.class) Tmio1Bus entity, BindingResult bindingResult,
+			@RequestParam(value = "action", required = true) String action, Integer id) {
 		// TODO Auto-generated method stub
-		iBusDelegate.delete(id);
+		return null;
 	}
+
+
+
+
+
+
 
 }
