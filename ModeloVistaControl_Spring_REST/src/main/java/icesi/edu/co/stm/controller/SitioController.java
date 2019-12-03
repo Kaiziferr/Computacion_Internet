@@ -13,11 +13,11 @@ import icesi.edu.co.stm.delegate.ISitioDelegate;
 import icesi.edu.co.stm.model.Tmio1Sitio;
 
 @Controller
-public class SitioController implements ISitioController{
+public class SitioController implements ISitioController {
 
 	@Autowired
 	private ISitioDelegate iSitioDelegate;
-	
+
 	@GetMapping("/sitio")
 	@Override
 	public Iterable<Tmio1Sitio> getALL() {
@@ -41,9 +41,9 @@ public class SitioController implements ISitioController{
 
 	@PutMapping("/sitio/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Sitio entity,@PathVariable Long id) {
+	public void update(@RequestBody Tmio1Sitio entity, @PathVariable Long id) {
 		// TODO Auto-generated method stub
-		iSitioDelegate.update(entity,id);
+		iSitioDelegate.update(entity, id);
 	}
 
 	@DeleteMapping("/sitio/{id}")

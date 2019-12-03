@@ -13,11 +13,11 @@ import icesi.edu.co.stm.delegate.IRouteDelegate;
 import icesi.edu.co.stm.model.Tmio1Route;
 
 @Controller
-public class RouteController implements IRouteController{
+public class RouteController implements IRouteController {
 
 	@Autowired
-	private IRouteDelegate iRouteDelegate; 
-	
+	private IRouteDelegate iRouteDelegate;
+/*
 	@GetMapping("/route")
 	@Override
 	public Iterable<Tmio1Route> getALL() {
@@ -41,17 +41,16 @@ public class RouteController implements IRouteController{
 
 	@PutMapping("/route/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Route entity,@PathVariable Integer id) {
+	public void update(@RequestBody Tmio1Route entity, @PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		iRouteDelegate.update(entity,id);
+		iRouteDelegate.update(entity, id);
 	}
 
-	@DeleteMapping("/route/delete/{id}")
+	@DeleteMapping("/route/{id}")
 	@Override
 	public void delete(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		iRouteDelegate.delete(id);
 	}
-	
-
+*/
 }

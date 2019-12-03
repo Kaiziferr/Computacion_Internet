@@ -7,11 +7,13 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import icesi.edu.co.stm.model.Tmio1SitiosRuta;
 import icesi.edu.co.stm.model.Tmio1SitiosRutaPK;
 
+@Component
 public class SitioRutaDelegate implements ISitioRutaDelegate {
 
 	private final static String URI = "http://localhost:8080";

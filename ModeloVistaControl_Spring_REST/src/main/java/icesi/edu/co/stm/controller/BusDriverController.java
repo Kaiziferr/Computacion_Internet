@@ -13,11 +13,11 @@ import icesi.edu.co.stm.delegate.IDriverBusDelegate;
 import icesi.edu.co.stm.model.Tmio1BusDriver;
 
 @Controller
-public class BusDriverController implements IBusDriverController{
+public class BusDriverController implements IBusDriverController {
 
 	@Autowired
 	private IDriverBusDelegate iDriverBusDelegate;
-	
+
 	@GetMapping("/busdriver")
 	@Override
 	public Iterable<Tmio1BusDriver> getALL() {
@@ -31,7 +31,7 @@ public class BusDriverController implements IBusDriverController{
 		// TODO Auto-generated method stub
 		return iDriverBusDelegate.findById(id);
 	}
-	
+
 	@PostMapping("/busdriver")
 	@Override
 	public void add(@RequestBody Tmio1BusDriver entity) {
@@ -41,9 +41,9 @@ public class BusDriverController implements IBusDriverController{
 
 	@PutMapping("/busdriver/{id}")
 	@Override
-	public void update(@RequestBody Tmio1BusDriver entity,@PathVariable String id) {
+	public void update(@RequestBody Tmio1BusDriver entity, @PathVariable String id) {
 		// TODO Auto-generated method stub
-		iDriverBusDelegate.update(entity,id);
+		iDriverBusDelegate.update(entity, id);
 	}
 
 	@DeleteMapping("/busdriver/{id}")
@@ -52,7 +52,5 @@ public class BusDriverController implements IBusDriverController{
 		// TODO Auto-generated method stub
 		iDriverBusDelegate.delete(id);
 	}
-	
-	
 
 }

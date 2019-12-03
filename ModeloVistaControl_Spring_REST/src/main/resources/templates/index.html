@@ -21,39 +21,57 @@
 			<div class="col-md-6">
 				<h2 th:case="null">Sistema Transporte Masivo MIO!</h2>
 				<p>
-				<div sec:authorize="hasRole('admin')">
-					<a href="/users"><i class="fas fa-user ml-2"></i> Users </a>
-				</div>
+					<div sec:authorize="hasRole('admin')">
+						<a href="/users"><i class="fas fa-user ml-2"></i> Users </a>
+					</div>
 				</p>
 				<p>
-				<div sec:authorize="hasRole('admin')">
-					<a href="/buses"><i class="fas fa-bus ml-2"></i> Buses </a>
-				</div>
+					<div sec:authorize="hasRole('admin')">
+						<a href="/buses"><i class="fas fa-bus ml-2"></i> Buses </a>
+					</div>
 				</p>
 				<p>
-				<div sec:authorize="hasRole('admin')">
-					<a href="/busdrivers"><i class="fas fa-user ml-2"></i> Bus
+					<div sec:authorize="hasRole('admin')">
+						<a href="/busdriver"><i class="fas fa-user ml-2"></i> Bus
 						Drivers </a>
-				</div>
-				</p>
-
-
-				<p>
-				<div sec:authorize="hasRole('admin')">
-					<a href="/routes"><i class="fas fa-calendar ml-2"></i> Routes </a>
-				</div>
+					</div>
 				</p>
 
 				<p>
-				<div sec:authorize="hasRole('admin') OR hasRole('operator')">
-					<a href="/services"><i class="fas fa-calendar ml-2"></i>
+					<div sec:authorize="hasRole('admin')">
+						<a href="/route"><i class="fas fa-calendar ml-2"></i> Routes </a>
+					</div>
+				</p>
+
+				<p>
+					<div sec:authorize="hasRole('admin') OR hasRole('operator')">
+						<a href="/service"><i class="fas fa-calendar ml-2"></i>
 						Services </a>
-				</div>
+					</div>
+				</p>
+				<p>
+					<div sec:authorize="hasRole('admin') OR hasRole('operator')">
+						<a href="/servicesitio"><i class="fas fa-calendar ml-2"></i>
+						Servicios Sitio </a>
+					</div>
 				</p>
 
-			</div>
+				<p>
+					<div sec:authorize="hasRole('admin') OR hasRole('operator')">
+						<a href="/sitio"><i class="fas fa-calendar ml-2"></i> Sitio </a>
+					</div>
+				</p>
+				
+				<p>
+
+					<div sec:authorize="hasRole('admin') OR hasRole('operator')">
+						<a href="/sitioRuta"><i class="fas fa-calendar ml-2"></i>
+					Sitio Ruta</a>
+					</div>
+				</p>
 		</div>
-		<a href="/logout"><i class="fas fa-home ml-2"></i> logout</a>
+	</div>
+	<a href="/logout"><i class="fas fa-home ml-2"></i> logout</a>
 	</div>
 </body>
 </html>

@@ -14,12 +14,11 @@ import icesi.edu.co.stm.model.Tmio1SitiosRuta;
 import icesi.edu.co.stm.model.Tmio1SitiosRutaPK;
 
 @Controller
-public class SitioRutaController implements ISitioRutaController{
+public class SitioRutaController implements ISitioRutaController {
 
 	@Autowired
-	private ISitioRutaDelegate iSitioRutaDelegate; 
-	
-	
+	private ISitioRutaDelegate iSitioRutaDelegate;
+
 	@GetMapping("/sitioRuta")
 	@Override
 	public Iterable<Tmio1SitiosRuta> getALL() {

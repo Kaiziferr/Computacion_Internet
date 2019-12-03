@@ -13,11 +13,11 @@ import icesi.edu.co.stm.model.Tmio1Servicio;
 import icesi.edu.co.stm.model.Tmio1ServicioPK;
 
 @Controller
-public class ServicioController implements IServiceController{
+public class ServicioController implements IServiceController {
 
 	@Autowired
-	private IServiceDelegate iServiceDelegate; 
-	
+	private IServiceDelegate iServiceDelegate;
+
 	@GetMapping("/service")
 	@Override
 	public Iterable<Tmio1Servicio> getALL() {
@@ -41,9 +41,9 @@ public class ServicioController implements IServiceController{
 
 	@PutMapping("/service/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Servicio entity,@PathVariable Tmio1ServicioPK id) {
+	public void update(@RequestBody Tmio1Servicio entity, @PathVariable Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
-		iServiceDelegate.update(entity,id);
+		iServiceDelegate.update(entity, id);
 	}
 
 	@Override

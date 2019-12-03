@@ -18,9 +18,7 @@ import javax.validation.constraints.NotNull;
 
 import icesi.edu.co.stm.validation.Step1;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+
 
 @Entity
 @Table(name="tmio1_buses")
