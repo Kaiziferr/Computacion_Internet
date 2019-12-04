@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import icesi.edu.co.stm.delegate.IBusDelegate;
 import icesi.edu.co.stm.model.Tmio1Bus;
 import icesi.edu.co.stm.validation.Step1;
+import icesi.edu.co.stm.validation.Update;
 
 @Controller
 public class BusController implements IBusController {
@@ -68,33 +69,37 @@ public class BusController implements IBusController {
 		iBusDelegate.delete(id);
 		return "redirect:/buses";
 	}
-	
+
 	@GetMapping("/buses/update/{id}")
 	@Override
-	public String update(Model model) {
+	public String update(@PathVariable Integer id, Model model) {
 		// TODO Auto-generated method stub
-		model.addAttribute("tmio1Bus",new Tmio1Bus());
+		Tmio1Bus bus2 = iBusDelegate.findById(id);
+		model.addAttribute("tmio1Bus",bus2);
+	
+	
 		return "buses/update-bus";
 	}
-
-	@PutMapping("/buses/update/{id}")
+	@PostMapping("/buses/update/{id}")
 	@Override
-	public String update(@Validated(Step1.class) Tmio1Bus entity, BindingResult bindingResult,
-			@RequestParam(value = "action", required = true) String action, Model model) {
+	public String update(@PathVariable Integer id,@RequestParam(value = "action", required = true) String action, @Validated(Update.class) Tmio1Bus entity,
+			BindingResult bindingResult, Model model) {
 		// TODO Auto-generated method stub
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				return "buses/update-bus";
 			}
-		
+
+			iBusDelegate.update(entity, id);
 		}
 		return "redirect:/buses";
 	}
 
-	
 
 
 
 
 
 }
+
+

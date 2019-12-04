@@ -46,9 +46,10 @@ public class BusControllerRest implements IBusControllerRest{
 	
 	@GetMapping("/api/buses/{id}")
 	@Override
-	public Tmio1Bus findById(@PathVariable Integer id) {
+	public TransactionBody<Tmio1Bus,Integer> findById(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		return busService.findById(id);
+		TransactionBody<Tmio1Bus,Integer> transaction = new TransactionBody<>("bus",busService.findById(id));
+		return transaction;
 	}
 	
 	@GetMapping("/api/buses")	

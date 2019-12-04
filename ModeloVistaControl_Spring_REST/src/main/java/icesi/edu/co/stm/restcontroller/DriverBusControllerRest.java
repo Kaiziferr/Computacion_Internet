@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import icesi.edu.co.stm.delegate.TransactionBody;
 import icesi.edu.co.stm.model.Tmio1BusDriver;
 import icesi.edu.co.stm.service.IDriverBusService;
 
@@ -22,9 +23,9 @@ public class DriverBusControllerRest implements IDriverBusControllerRest{
 
 	@PostMapping("/api/busDriver")
 	@Override
-	public void save(@RequestBody Tmio1BusDriver entity) {
+	public void save(@RequestBody TransactionBody<Tmio1BusDriver,String> entity) {
 		// TODO Auto-generated method stub
-		busDriver.save(entity);
+		busDriver.save(entity.getBody());
 	}
 
 	@DeleteMapping("/api/busDriver/{id}")

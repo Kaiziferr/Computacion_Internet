@@ -59,7 +59,7 @@ public class ServiceSitioService implements IServiceSitioService{
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public List<Tmio1ServiciosSitio> findAll() {
+	public Iterable<Tmio1ServiciosSitio> findAll() {
 		// TODO Auto-generated method stub
 		return iServiciosSitioDao.findAll();
 	}

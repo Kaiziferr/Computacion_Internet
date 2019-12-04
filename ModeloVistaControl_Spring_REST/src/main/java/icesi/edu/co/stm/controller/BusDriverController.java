@@ -2,6 +2,8 @@ package icesi.edu.co.stm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,39 +20,47 @@ public class BusDriverController implements IBusDriverController {
 	@Autowired
 	private IDriverBusDelegate iDriverBusDelegate;
 
-	@GetMapping("/busdriver")
 	@Override
-	public Iterable<Tmio1BusDriver> getALL() {
+	public String getALL(Model model) {
 		// TODO Auto-generated method stub
-		return iDriverBusDelegate.findAll();
+		return null;
 	}
 
-	@GetMapping("/busdriver/{id}")
 	@Override
-	public Tmio1BusDriver get(@PathVariable String id) {
+	public Tmio1BusDriver get(String id) {
 		// TODO Auto-generated method stub
-		return iDriverBusDelegate.findById(id);
+		return null;
 	}
 
-	@PostMapping("/busdriver")
 	@Override
-	public void add(@RequestBody Tmio1BusDriver entity) {
+	public String add(Model model) {
 		// TODO Auto-generated method stub
-		iDriverBusDelegate.save(entity);
+		return null;
 	}
 
-	@PutMapping("/busdriver/{id}")
 	@Override
-	public void update(@RequestBody Tmio1BusDriver entity, @PathVariable String id) {
+	public String save(Tmio1BusDriver entity, BindingResult bindingResult, String action, Model model) {
 		// TODO Auto-generated method stub
-		iDriverBusDelegate.update(entity, id);
+		return null;
 	}
 
-	@DeleteMapping("/busdriver/{id}")
 	@Override
-	public void delete(@PathVariable String id) {
+	public String remove(String id) {
 		// TODO Auto-generated method stub
-		iDriverBusDelegate.delete(id);
+		return null;
 	}
+
+	@Override
+	public String update(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String update(Tmio1BusDriver entity, BindingResult bindingResult, String action, Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

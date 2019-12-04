@@ -31,6 +31,8 @@
 								<th>Modelo</th>
 								<th>Placa</th>
 								<th>Tipo</th>
+								<th>Servicios</th>
+								<th>Servicios Sitios</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
@@ -43,6 +45,8 @@
 								<td class="text-info" th:text="${bus.modelo}"></td>
 								<td class="text-info" th:text="${bus.placa}"></td>
 								<td class="text-info" th:text="${bus.tipo}"></td>
+								<td class="text-info" th:text="${bus.tmio1Servicios}"></td>
+								<td class="text-info" th:text="${bus.tmio1ServiciosSitios}"></td>
 							<td><a th:href="@{/buses/update/{id}(id=${bus.id})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
 							<td><a th:href="@{/buses/remove/{id}(id=${bus.id})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
 							</tr>

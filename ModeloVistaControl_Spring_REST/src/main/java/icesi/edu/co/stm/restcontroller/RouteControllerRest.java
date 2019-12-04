@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import icesi.edu.co.stm.delegate.TransactionBody;
+import icesi.edu.co.stm.model.Tmio1Bus;
 import icesi.edu.co.stm.model.Tmio1Route;
 import icesi.edu.co.stm.service.IRouteService;
 
@@ -22,9 +24,9 @@ public class RouteControllerRest implements IRouteControllerRest{
 	
 	@PostMapping("/api/route")
 	@Override
-	public void save(@RequestBody Tmio1Route entity) {
+	public void save(@RequestBody TransactionBody<Tmio1Route,Integer> entity) {
 		// TODO Auto-generated method stub
-		routeService.save(entity);
+		routeService.save(entity.getBody());
 	}
 
 	@DeleteMapping("/api/route/{id}")
@@ -43,16 +45,18 @@ public class RouteControllerRest implements IRouteControllerRest{
 
 	@GetMapping("/api/route/{id}")
 	@Override
-	public Tmio1Route findById(@PathVariable Integer id) {
+	public TransactionBody<Tmio1Route,Integer> findById(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		return routeService.findById(id);
+		TransactionBody<Tmio1Route,Integer> transaction = new TransactionBody<>("bus",routeService.findById(id));
+		return transaction;
 	}
 
 	@GetMapping("/api/route")
 	@Override
-	public List<Tmio1Route> findAll() {
+	public TransactionBody<Iterable<Tmio1Route>,Integer> findAll() {
 		// TODO Auto-generated method stub
-		return routeService.findAll();
+		TransactionBody<Iterable<Tmio1Route>,Integer> transaction = new TransactionBody<>("busList",routeService.findAll());
+		return transaction;
 	}
 
 }

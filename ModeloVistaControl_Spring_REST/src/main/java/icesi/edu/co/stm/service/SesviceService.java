@@ -56,7 +56,7 @@ public class SesviceService implements IServiceService{
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public List<Tmio1Servicio> findAll() {
+	public Iterable<Tmio1Servicio> findAll() {
 		// TODO Auto-generated method stub
 		return iServiceDao.findAll();
 	}

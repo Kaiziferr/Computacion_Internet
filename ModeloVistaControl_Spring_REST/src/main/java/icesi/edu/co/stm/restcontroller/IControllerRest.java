@@ -10,7 +10,7 @@ public interface IControllerRest <T,K> {
 	
 	public void update(T entity, K id);
 
-	public T findById(K id);
+	public TransactionBody<T,K> findById(K id);
 		
 	public TransactionBody<Iterable<T>, K> findAll();
 }

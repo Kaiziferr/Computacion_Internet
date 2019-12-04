@@ -59,7 +59,7 @@ public class RouteService implements IRouteService{
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public List<Tmio1Route> findAll() {
+	public Iterable<Tmio1Route> findAll() {
 		// TODO Auto-generated method stub
 		return iRouteDao.findAll();
 	}

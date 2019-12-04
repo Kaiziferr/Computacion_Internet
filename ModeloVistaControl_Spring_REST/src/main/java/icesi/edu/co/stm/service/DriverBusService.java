@@ -60,7 +60,7 @@ public class DriverBusService implements IDriverBusService{
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public List<Tmio1BusDriver> findAll() {
+	public Iterable<Tmio1BusDriver> findAll() {
 		// TODO Auto-generated method stub
 		return iBusDriverDao.findAll();
 	}

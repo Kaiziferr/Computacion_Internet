@@ -58,7 +58,7 @@ public class SitioRutaService implements ISitioRutaService{
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
-	public List<Tmio1SitiosRuta> findAll() {
+	public Iterable<Tmio1SitiosRuta> findAll() {
 		// TODO Auto-generated method stub
 		return iSitioRutaDao.findAll();
 	}
