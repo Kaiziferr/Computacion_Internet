@@ -55,7 +55,7 @@ public class SitioRutaController implements ISitioRutaController {
 	public String add(Model model) {
 		// TODO Auto-generated method stub
 		model.addAttribute("tmio1Bus",new Tmio1SitiosRuta());
-		model.addAttribute("tmio1Sitio",iSitioDelegate.findAll());
+		//model.addAttribute("tmio1Sitio",iSitioDelegate.findAll());
 		model.addAttribute("tmio1Route",iRutaDelegate.findAll());
 		return "sitiorutas/add-sitioruta";
 	}

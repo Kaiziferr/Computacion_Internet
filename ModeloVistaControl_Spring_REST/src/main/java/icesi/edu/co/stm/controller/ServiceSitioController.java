@@ -14,45 +14,33 @@ import icesi.edu.co.stm.model.Tmio1ServiciosSitio;
 import icesi.edu.co.stm.model.Tmio1ServiciosSitioPK;
 
 @Controller
-public class  implements IServicioSitioController {
+public class  ServiceSitioController implements IServicioSitioController {
 
 	@Autowired
 	private IServicioSitioDelegate iServicioSitioDelegate;
-	
 
-	@PutMapping("/servicesitio/{id}")
-	@Override
-	public void update(Tmio1ServiciosSitio entity, Tmio1ServiciosSitioPK id) {
-		// TODO Auto-generated method stub
-		iServicioSitioDelegate.update(entity, id);
-	}
-
-	@DeleteMapping("/servicesitio/{id}")
-	@Override
-	public void delete(Tmio1ServiciosSitioPK id) {
-		// TODO Auto-generated method stub
-		iServicioSitioDelegate.delete(id);
-	}
-	
-	@GetMapping("/servicesitio")
 	@Override
 	public String getALL(Model model) {
 		// TODO Auto-generated method stub
-		return iServicioSitioDelegate.findAll();
+		return null;
 	}
-	@GetMapping("/servicesitio/{id}")
+
+	@Override
+	public Tmio1ServiciosSitio get(Tmio1ServiciosSitioPK id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@Override
 	public String add(Model model) {
 		// TODO Auto-generated method stub
-		return iServicioSitioDelegate.findById(id);
+		return null;
 	}
 
-	@PostMapping("/servicesitio")
 	@Override
 	public String save(Tmio1ServiciosSitio entity, BindingResult bindingResult, String action, Model model) {
 		// TODO Auto-generated method stub
-		iServicioSitioDelegate.save(entity);
-
+		return null;
 	}
 
 	@Override
@@ -73,5 +61,7 @@ public class  implements IServicioSitioController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
 
 }

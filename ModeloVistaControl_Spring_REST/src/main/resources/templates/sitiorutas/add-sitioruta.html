@@ -20,17 +20,17 @@
 		<h2 class="mb-5">New Bus</h2>
 		<div class="row">
 			<div class="col-md-6">
-				<form action="#" th:action="@{/sitRutas/add}" th:object="${tmio1SitiosRuta}"
+				<form action="#" th:action="@{/sitiorutas/add}" th:object="${tmio1SitiosRuta}"
 					method="post">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<label for="tmio1Ruta1" class="col-form-label">tmio1Ruta1</label> <select
-								th:field="*{tmio1Ruta1}">
-								<option th:each="doc : ${tmio1Route}" th:value="${doc.id}"
-									class="form-control" th:text="${doc.numero}"
+							<label for="tmio1Route" class="col-form-label">tmio1Ruta1</label> <select
+								th:field="*{tmio1Route.id}">
+								<option th:each="ruta : ${tmio1Routes}" th:value="${tmio1Route.id}"
+									class="form-control" th:text="${tmio1Route.numero}"
 									th:selected="${tmio1SitiosRuta.tmio1Ruta1=doc}"></option>
-							</select> <span th:if="${#fields.hasErrors('tmio1Ruta1')}"
-								th:errors="*{tmio1Ruta1}" class="text-danger"></span>
+							</select> <span th:if="${#fields.hasErrors('tmio1Route')}"
+								th:errors="*{tmio1Route}" class="text-danger"></span>
 						</div>
 
 					</div>
