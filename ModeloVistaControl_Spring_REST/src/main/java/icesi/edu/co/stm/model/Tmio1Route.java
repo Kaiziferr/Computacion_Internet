@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -62,17 +64,21 @@ public class Tmio1Route implements Serializable {
 	private String numero;
 
 	//bi-directional many-to-one association to Tmio1Servicio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Ruta")
 	private List<Tmio1Servicio> tmio1Servicios;
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Ruta")
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
 	
 	//bi-directional many-to-one association to Tmio1SitiosRuta
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Ruta1")
 	private List<Tmio1SitiosRuta> tmio1SitiosRutas1;
 	//bi-directional many-to-one association to Tmio1SitiosRuta
 
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Ruta2")
 	private List<Tmio1SitiosRuta> tmio1SitiosRutas2;
 

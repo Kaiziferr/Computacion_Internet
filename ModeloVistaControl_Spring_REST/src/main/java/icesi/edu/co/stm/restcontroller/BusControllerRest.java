@@ -1,8 +1,5 @@
 package icesi.edu.co.stm.restcontroller;
 
-
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +36,9 @@ public class BusControllerRest implements IBusControllerRest{
 
 	@PutMapping("/api/buses/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Bus entity, @PathVariable Integer id) {
+	public void update(@RequestBody TransactionBody<Tmio1Bus,Integer> entity, @PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		busService.update(entity,id);
+		busService.update(entity.getBody(),id);
 	}
 	
 	@GetMapping("/api/buses/{id}")

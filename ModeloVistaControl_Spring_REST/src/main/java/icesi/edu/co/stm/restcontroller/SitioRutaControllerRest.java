@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import icesi.edu.co.stm.delegate.TransactionBody;
+import icesi.edu.co.stm.model.Tmio1Bus;
+import icesi.edu.co.stm.model.Tmio1Sitio;
 import icesi.edu.co.stm.model.Tmio1SitiosRuta;
 import icesi.edu.co.stm.model.Tmio1SitiosRutaPK;
 import icesi.edu.co.stm.service.ISitioRutaService;
@@ -23,9 +26,9 @@ public class SitioRutaControllerRest implements ISitioRutaControllerRest{
 	
 	@PostMapping("/api/sitioRuta")
 	@Override
-	public void save(@RequestBody Tmio1SitiosRuta entity) {
+	public void save(@RequestBody TransactionBody<Tmio1SitiosRuta, Tmio1SitiosRutaPK> entity) {
 		// TODO Auto-generated method stub
-		iSitioRutaService.save(entity);
+		iSitioRutaService.save(entity.getBody());
 	}
 
 	@DeleteMapping("/api/sitioRuta/{id}")
@@ -44,16 +47,18 @@ public class SitioRutaControllerRest implements ISitioRutaControllerRest{
 
 	@GetMapping("/api/sitioRuta/{id}")
 	@Override
-	public Tmio1SitiosRuta findById(@PathVariable Tmio1SitiosRutaPK id) {
+	public TransactionBody<Tmio1SitiosRuta, Tmio1SitiosRutaPK> findById(@PathVariable Tmio1SitiosRutaPK id) {
 		// TODO Auto-generated method stub
-		return iSitioRutaService.findById(id);
+		TransactionBody<Tmio1SitiosRuta,Tmio1SitiosRutaPK> transaction = new TransactionBody<>("sitioRuta",iSitioRutaService.findById(id));
+		return transaction;
 	}
 
 	@GetMapping("/api/sitioRuta")
 	@Override
-	public List<Tmio1SitiosRuta> findAll() {
+	public TransactionBody<Iterable<Tmio1SitiosRuta>, Tmio1SitiosRutaPK> findAll() {
 		// TODO Auto-generated method stub
-		return iSitioRutaService.findAll();
+		TransactionBody<Iterable<Tmio1SitiosRuta>,Tmio1SitiosRutaPK> transaction = new TransactionBody<>("sitiosList",iSitioRutaService.findAll());
+		return transaction;
 	}
 
 }

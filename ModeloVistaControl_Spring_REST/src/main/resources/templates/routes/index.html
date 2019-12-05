@@ -33,6 +33,10 @@
 								<th>Hora inicio</th>
 								<th>Hora final</th>
 								<th>Numero</th>
+								<th>Servicios</th>
+								<th>Servicios Sitios</th>
+								<th>Sitio ruta 1</th>
+								<th>Sitio ruta 2</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
@@ -47,6 +51,12 @@
 								<td class="text-info" th:text="${route.horaFin}"></td>
 								<td class="text-info" th:text="${route.horaInicio}"></td>
 								<td class="text-info" th:text="${route.numero}"></td>
+								<td class="text-info" th:text="${route.tmio1Servicios}"></td>
+								<td class="text-info" th:text="${route.tmio1ServiciosSitios}"></td>
+								<td class="text-info" th:text="${route.tmio1SitiosRutas1}"></td>
+								<td class="text-info" th:text="${route.tmio1SitiosRutas2}"></td>
+								<td><a th:href="@{/routes/update/{id}(id=${route.id})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
+							<td><a th:href="@{/routes/remove/{id}(id=${route.id})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
 							</tr>
 						</tbody>
 					</table>

@@ -8,7 +8,7 @@ public interface IControllerRest <T,K> {
 	
 	public void delete(K id);
 	
-	public void update(T entity, K id);
+	public void update(TransactionBody<T,K> entity, K id);
 
 	public TransactionBody<T,K> findById(K id);
 		

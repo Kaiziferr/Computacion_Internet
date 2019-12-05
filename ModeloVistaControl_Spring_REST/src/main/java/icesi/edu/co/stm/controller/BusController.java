@@ -5,12 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import icesi.edu.co.stm.delegate.IBusDelegate;
@@ -76,8 +73,6 @@ public class BusController implements IBusController {
 		// TODO Auto-generated method stub
 		Tmio1Bus bus2 = iBusDelegate.findById(id);
 		model.addAttribute("tmio1Bus",bus2);
-	
-	
 		return "buses/update-bus";
 	}
 	@PostMapping("/buses/update/{id}")
@@ -89,7 +84,6 @@ public class BusController implements IBusController {
 			if (bindingResult.hasErrors()) {
 				return "buses/update-bus";
 			}
-
 			iBusDelegate.update(entity, id);
 		}
 		return "redirect:/buses";

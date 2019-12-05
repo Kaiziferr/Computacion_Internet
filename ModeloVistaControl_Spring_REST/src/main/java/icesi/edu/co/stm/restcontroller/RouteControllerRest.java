@@ -1,7 +1,5 @@
 package icesi.edu.co.stm.restcontroller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import icesi.edu.co.stm.delegate.TransactionBody;
-import icesi.edu.co.stm.model.Tmio1Bus;
 import icesi.edu.co.stm.model.Tmio1Route;
 import icesi.edu.co.stm.service.IRouteService;
 
@@ -38,9 +35,9 @@ public class RouteControllerRest implements IRouteControllerRest{
 
 	@PutMapping("/api/route/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Route entity, @PathVariable Integer id) {
+	public void update(@RequestBody TransactionBody<Tmio1Route,Integer>entity, @PathVariable Integer id) {
 		// TODO Auto-generated method stub
-		routeService.update(entity, id);
+		routeService.update(entity.getBody(), id);
 	}
 
 	@GetMapping("/api/route/{id}")

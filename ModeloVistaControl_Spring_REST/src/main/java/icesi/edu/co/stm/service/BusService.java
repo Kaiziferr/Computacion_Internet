@@ -1,5 +1,4 @@
 package icesi.edu.co.stm.service;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +47,7 @@ public class BusService implements IBusService{
 		bus.setTipo(entity.getTipo());
 		bus.setTmio1Servicios(entity.getTmio1Servicios());
 		bus.setTmio1ServiciosSitios(entity.getTmio1ServiciosSitios());
+		iBusDao.update(entity);
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)

@@ -1,6 +1,5 @@
 package icesi.edu.co.stm.restcontroller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,23 +36,25 @@ public class DriverBusControllerRest implements IDriverBusControllerRest{
 
 	@PutMapping("/api/busDriver/{id}")
 	@Override
-	public void update(@RequestBody Tmio1BusDriver entity, @PathVariable String id) {
+	public void update(@RequestBody  TransactionBody<Tmio1BusDriver,String> entity, @PathVariable String id) {
 		// TODO Auto-generated method stub
-		busDriver.update(entity, id);
+		busDriver.update(entity.getBody(), id);
 	}
 
 	@GetMapping("/api/busDriver/{id}")
 	@Override
-	public Tmio1BusDriver findById(@PathVariable String id) {
+	public TransactionBody<Tmio1BusDriver,String> findById(@PathVariable String id) {
 		// TODO Auto-generated method stub
-		return busDriver.findById(id);
+		TransactionBody<Tmio1BusDriver,String> transaction = new TransactionBody<>("busDriver",busDriver.findById(id));
+		return transaction;
 	}
 
 	@GetMapping("/api/busDriver")
 	@Override
-	public List<Tmio1BusDriver> findAll() {
+	public TransactionBody<Iterable<Tmio1BusDriver>,String>findAll() {
 		// TODO Auto-generated method stub
-		return busDriver.findAll();
+		TransactionBody<Iterable<Tmio1BusDriver>,String> transaction = new TransactionBody<>("busDriverList",busDriver.findAll());
+		return transaction;
 	}
 	
 }

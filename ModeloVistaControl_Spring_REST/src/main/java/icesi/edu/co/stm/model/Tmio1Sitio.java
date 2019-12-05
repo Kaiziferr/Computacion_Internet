@@ -2,6 +2,9 @@ package icesi.edu.co.stm.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -25,14 +28,17 @@ public class Tmio1Sitio implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Sitio")
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
 
 	//bi-directional many-to-one association to Tmio1SitiosRuta
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Sitio1")
 	private List<Tmio1SitiosRuta> tmio1SitiosRutas1;
 
 	//bi-directional many-to-one association to Tmio1SitiosRuta
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Sitio2")
 	private List<Tmio1SitiosRuta> tmio1SitiosRutas2;
 

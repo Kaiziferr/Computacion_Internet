@@ -1,7 +1,6 @@
 package icesi.edu.co.stm.delegate;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -58,6 +57,7 @@ public class BusDelegate implements IBusDelegate{
 		response = restTemplate.exchange(URI + "/api/buses/"+id, HttpMethod.PUT, request,
 				new ParameterizedTypeReference<TransactionBody<Tmio1Bus,Integer>>() {
 				});
+
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import icesi.edu.co.stm.delegate.TransactionBody;
 import icesi.edu.co.stm.model.Tmio1Sitio;
 import icesi.edu.co.stm.service.ISitioService;
 
@@ -22,9 +23,9 @@ public class SitioControllerRest implements ISitioControllerRest{
 	
 	@PostMapping("/api/sitio")
 	@Override
-	public void save(@RequestBody Tmio1Sitio entity) {
+	public void save(@RequestBody TransactionBody<Tmio1Sitio,Long> entity) {
 		// TODO Auto-generated method stub
-		iSitioService.save(entity);
+		iSitioService.save(entity.getBody());
 	}
 
 	@DeleteMapping("/api/sitio/{id}")
@@ -43,16 +44,18 @@ public class SitioControllerRest implements ISitioControllerRest{
 
 	@GetMapping("/api/sitio/{id}")
 	@Override
-	public Tmio1Sitio findById(@PathVariable Long id) {
+	public TransactionBody<Tmio1Sitio,Long> findById(@PathVariable Long id) {
 		// TODO Auto-generated method stub
-		return iSitioService.findById(id);
+		TransactionBody<Tmio1Sitio,Long> transaction = new TransactionBody<>("sitios",iSitioService.findById(id)); 
+		return transaction;
 	}
 	
 	@GetMapping("/api/sitio")
 	@Override
-	public List<Tmio1Sitio> findAll() {
+	public TransactionBody<Iterable<Tmio1Sitio>,Long> findAll() {
 		// TODO Auto-generated method stub
-		return iSitioService.findAll();
+		TransactionBody<Iterable<Tmio1Sitio>,Long> transaction = new TransactionBody<>("sitiosList",iSitioService.findAll());
+		return transaction;
 	}
 
 }

@@ -32,6 +32,8 @@
 								<th>Nombre</th>
 								<th>Fecha Contratacion</th>
 								<th>Fecha Nacimiento</th>
+								<th>Servicios</th>
+								<th>Servicios Sitios</th>
 								<th>Edit</th>
 								<th>Delete</th>
 
@@ -44,7 +46,10 @@
 								<td class="text-info" th:text="${busdriver.nombre}"></td>
 								<td class="text-info" th:text="${busdriver.fechaContratacion}"></td>
 								<td class="text-info" th:text="${busdriver.fechaNacimiento}"></td>
-
+								<td class="text-info" th:text="${busdriver.tmio1Servicios}"></td>
+								<td class="text-info" th:text="${busdriver.tmio1ServiciosSitios}"></td>
+								<td><a th:href="@{/busdrivers/update/{id}(id=${busdriver.cedula})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
+							<td><a th:href="@{/busdrivers/remove/{id}(id=${busdriver.cedula})}" class="fas fa-calendar ml-2"></i></a></td>"</td>
 							</tr>
 						</tbody>
 					</table>
@@ -52,11 +57,6 @@
 						<a href="/busdrivers/add" class="btn btn-primary"><i
 							class="fas fa-user-plus ml-2"></i></a>
 					</p>
-					<p class="my-5">
-						<a href="/busdrivers/show" class="btn btn-primary"><i
-							class="fas fa-search"></i></a>
-					</p>
-
 				</div>
 			</div>
 		</div>

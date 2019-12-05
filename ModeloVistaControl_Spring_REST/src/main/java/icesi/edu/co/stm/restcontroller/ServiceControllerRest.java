@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import icesi.edu.co.stm.delegate.TransactionBody;
+import icesi.edu.co.stm.model.Tmio1BusDriver;
 import icesi.edu.co.stm.model.Tmio1Servicio;
 import icesi.edu.co.stm.model.Tmio1ServicioPK;
 import icesi.edu.co.stm.service.IServiceService;
@@ -23,9 +25,9 @@ public class ServiceControllerRest implements IServiceControllerRest{
 	
 	@PostMapping("/api/service")
 	@Override
-	public void save(@RequestBody Tmio1Servicio entity) {
+	public void save(@RequestBody TransactionBody<Tmio1Servicio,Tmio1ServicioPK> entity) {
 		// TODO Auto-generated method stub
-		serviceService.save(entity);
+		serviceService.save(entity.getBody());
 	}
 
 	@DeleteMapping("/api/service/{id}")
@@ -44,16 +46,18 @@ public class ServiceControllerRest implements IServiceControllerRest{
 
 	@GetMapping("/api/service/{id}")
 	@Override
-	public Tmio1Servicio findById(@PathVariable Tmio1ServicioPK id) {
+	public TransactionBody<Tmio1Servicio, Tmio1ServicioPK> findById(@PathVariable Tmio1ServicioPK id) {
 		// TODO Auto-generated method stub
-		return serviceService.findById(id);
+		TransactionBody<Tmio1Servicio,Tmio1ServicioPK> transaction = new TransactionBody<>("busDriver",serviceService.findById(id));
+		return transaction;
 	}
 	
 	@GetMapping("/api/service")
 	@Override
-	public List<Tmio1Servicio> findAll() {
+	public TransactionBody<Iterable<Tmio1Servicio>, Tmio1ServicioPK> findAll() {
 		// TODO Auto-generated method stub
-		return serviceService.findAll();
+		TransactionBody<Iterable<Tmio1Servicio>,Tmio1ServicioPK> transaction = new TransactionBody<>("busDriverList",serviceService.findAll());
+		return transaction;
 	}
 
 	
