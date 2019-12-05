@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import icesi.edu.co.stm.delegate.TransactionBody;
 import icesi.edu.co.stm.model.Tmio1User;
 import icesi.edu.co.stm.service.IUserService;
 
@@ -16,7 +17,7 @@ import icesi.edu.co.stm.service.IUserService;
 public class UserControllerRest implements IUserControllerRest{
 
 	@Override
-	public void save(Tmio1User entity) {
+	public void save(TransactionBody<Tmio1User, Integer> entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -28,22 +29,24 @@ public class UserControllerRest implements IUserControllerRest{
 	}
 
 	@Override
-	public void update(Tmio1User entity, Integer id) {
+	public void update(TransactionBody<Tmio1User, Integer> entity, Integer id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Tmio1User findById(Integer id) {
+	public TransactionBody<Tmio1User, Integer> findById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Tmio1User> findAll() {
+	public TransactionBody<Iterable<Tmio1User>, Integer> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	
 	
 }

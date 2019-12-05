@@ -5,18 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import icesi.edu.co.stm.delegate.ISitioDelegate;
-import icesi.edu.co.stm.model.Tmio1Bus;
 import icesi.edu.co.stm.model.Tmio1Sitio;
 import icesi.edu.co.stm.validation.Step1;
+import icesi.edu.co.stm.validation.Update;
 
 @Controller
 public class SitioController implements ISitioController {
@@ -44,7 +41,7 @@ public class SitioController implements ISitioController {
 	public String add(Model model) {
 		// TODO Auto-generated method stub
 		model.addAttribute("tmio1Sitio",new Tmio1Sitio());
-		return "buses/add-sitios";
+		return "sitios/add-sitios";
 	}
 
 	@PostMapping("/sitios/add")
@@ -54,7 +51,7 @@ public class SitioController implements ISitioController {
 		// TODO Auto-generated method stub
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
-				return "buses/add-sitios";
+				return "sitios/add-sitios";
 			}
 			iSitioDelegate.save(entity);
 		}
@@ -63,22 +60,34 @@ public class SitioController implements ISitioController {
 
 	@Override
 	@GetMapping("/sitios/remove/{id}")
-	public String remove(Long id) {
+	public String remove(@PathVariable Long id) {
 		// TODO Auto-generated method stub
 		iSitioDelegate.delete(id);
 		return "redirect:/sitios";
 	}
-
+	
+	@GetMapping("/sitios/update/{id}")
 	@Override
-	public String update(Long id, Model model) {
+	public String update( @PathVariable Long id, Model model) {
 		// TODO Auto-generated method stub
-		return null;
+		Tmio1Sitio sitio = iSitioDelegate.findById(id);
+		model.addAttribute("tmio1Sitio",sitio);
+
+		return "sitios/update-sitios";
 	}
-
+	@PostMapping("/sitios/update/{id}")
 	@Override
-	public String update(Long id, String action, Tmio1Sitio entity, BindingResult bindingResult, Model model) {
+	public String update(@PathVariable Long id,@RequestParam(value = "action", required = true) String action, @Validated(Update.class) Tmio1Sitio entity,
+			BindingResult bindingResult, Model model) {
 		// TODO Auto-generated method stub
-		return null;
+
+		if (!action.equals("Cancel")) {
+			if (bindingResult.hasErrors()) {
+				return "sitios/update-sitios";
+			}
+			iSitioDelegate.update(entity, id);
+		}
+		return "redirect:/sitios";
 	}
 
 	

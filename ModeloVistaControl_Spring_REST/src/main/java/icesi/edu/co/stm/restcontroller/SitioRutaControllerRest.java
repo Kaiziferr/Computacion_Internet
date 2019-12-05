@@ -1,6 +1,5 @@
 package icesi.edu.co.stm.restcontroller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import icesi.edu.co.stm.delegate.TransactionBody;
-import icesi.edu.co.stm.model.Tmio1Bus;
-import icesi.edu.co.stm.model.Tmio1Sitio;
 import icesi.edu.co.stm.model.Tmio1SitiosRuta;
 import icesi.edu.co.stm.model.Tmio1SitiosRutaPK;
 import icesi.edu.co.stm.service.ISitioRutaService;
@@ -40,9 +37,9 @@ public class SitioRutaControllerRest implements ISitioRutaControllerRest{
 
 	@PutMapping("/api/sitioRuta/{id}")
 	@Override
-	public void update(@RequestBody Tmio1SitiosRuta entity, @PathVariable Tmio1SitiosRutaPK id) {
+	public void update(@RequestBody TransactionBody<Tmio1SitiosRuta, Tmio1SitiosRutaPK> entity, @PathVariable Tmio1SitiosRutaPK id) {
 		// TODO Auto-generated method stub
-		iSitioRutaService.update(entity, id);
+		iSitioRutaService.update(entity.getBody(), id);
 	}
 
 	@GetMapping("/api/sitioRuta/{id}")

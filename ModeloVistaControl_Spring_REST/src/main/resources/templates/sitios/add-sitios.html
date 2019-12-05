@@ -17,51 +17,29 @@
 </head>
 <body>
 	<div class="container my-5">
-		<h2 class="mb-5">New Bus</h2>
+		<h2 class="mb-5">New Sitio</h2>
 		<div class="row">
 			<div class="col-md-6">
 				<form action="#" th:action="@{/sitios/add}" th:object="${tmio1Sitio}"
 					method="post">
 					<div class="row">
+					
 						<div class="form-group col-md-6">
-
-							<label for="capacidad" class="col-form-label">Capacidad</label> <input
-								type="number" th:field="*{capacidad}" class="form-control"
-								id="capacidad" placeholder="capacidad"> <span
-								th:if="${#fields.hasErrors('capacidad')}"
-								th:errors="*{capacidad}" class="text-danger"></span>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="marca" class="col-form-label">Marca</label> <input
-								type="text" th:field="*{marca}" class="form-control" id="marca"
-								placeholder="marca"> <span
-								th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"
+							<label for="descripcion" class="col-form-label">Descripcion</label> <input
+								type="text" th:field="*{descripcion}" class="form-control" id="descripcion"
+								placeholder="descripcion"> <span
+								th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"
 								class="text-danger"></span>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="modelo" class="col-form-label"></label>Modelo<input
-								type="number" th:field="*{modelo}" class="form-control"
-								id="modelo" placeholder="modelo"> <span
-								th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"
+							<label for="nombre" class="col-form-label">Nombre</label> <input
+								type="text" th:field="*{nombre}" class="form-control" id="nombre"
+								placeholder="nombre"> <span
+								th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
 								class="text-danger"></span>
 						</div>
-
-						<div class="form-group col-md-6">
-							<label for="placa" class="col-form-label"></label>Placa<input
-								type="text" th:field="*{placa}" class="form-control" id="placa"
-								placeholder="placa"> <span
-								th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"
-								class="text-danger"></span>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="tipo" class="col-form-label"></label>Tipo<input
-								type="text" th:field="*{tipo}" class="form-control" id="tipo"
-								placeholder="tipo"> <span
-								th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"
-								class="text-danger"></span>
-						</div>
-
-					</div>
+					
+					
 
 					<div class="row">
 						<div class="col-md-4 mt-3">

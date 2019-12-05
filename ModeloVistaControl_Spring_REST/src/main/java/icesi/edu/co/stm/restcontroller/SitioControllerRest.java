@@ -1,7 +1,5 @@
 package icesi.edu.co.stm.restcontroller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +35,9 @@ public class SitioControllerRest implements ISitioControllerRest{
 
 	@PutMapping("/api/sitio/{id}")
 	@Override
-	public void update(@RequestBody Tmio1Sitio entity,@PathVariable Long id) {
+	public void update(@RequestBody TransactionBody<Tmio1Sitio,Long> entity,@PathVariable Long id) {
 		// TODO Auto-generated method stub
-		iSitioService.update(entity, id);
+		iSitioService.update(entity.getBody(), id);
 	}
 
 	@GetMapping("/api/sitio/{id}")
